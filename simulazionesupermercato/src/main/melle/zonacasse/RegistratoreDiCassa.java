@@ -2,6 +2,8 @@ package main.melle.zonacasse;
 
 import java.util.List;
 
+import main.miftari.prodotti.Prodotto;
+
 public class RegistratoreDiCassa {
 	
 	private double guadagno;

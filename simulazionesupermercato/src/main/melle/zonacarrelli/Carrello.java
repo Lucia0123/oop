@@ -2,6 +2,8 @@ package main.melle.zonacarrelli;
 
 import java.util.List;
 
+import main.miftari.prodotti.Prodotto;
+
 public interface Carrello {
 
 	int getCapacitaMax();

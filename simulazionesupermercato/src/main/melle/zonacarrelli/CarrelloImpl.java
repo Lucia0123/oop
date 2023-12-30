@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import main.miftari.prodotti.Prodotto;
+
 public class CarrelloImpl implements Carrello{
 	
 	private static final int CAPACITAMAX = 30;  // massimo numero di prodotti aggiungibili al carrello
