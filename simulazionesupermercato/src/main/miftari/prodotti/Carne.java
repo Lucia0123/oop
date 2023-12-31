@@ -11,7 +11,7 @@ public class Carne extends ProdottoAlimentare{
             public Carne (double prezzo, LocalDate dataScadenza,
 double pesoConfezione, 
 int quantitaConfezione,TipoCarne tipoCarne) {
-                super(prezzo, Optional.ofNullable(dataScadenza));
+                super(prezzo, Optional.ofNullable(dataScadenza),pesoConfezione, quantitaConfezione);
                 
   this.tipoCarne = tipoCarne;
             }
