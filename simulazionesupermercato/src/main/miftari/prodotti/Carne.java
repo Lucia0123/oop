@@ -5,16 +5,16 @@ import java.util.Optional;
 
 public class Carne extends ProdottoAlimentare{
 
-         private Tipo tipo;
+         private TipoCarne tipo;
 
             // Costruttore che chiama il costruttore della classe base e imposta dati specifici della carne
-            public Carne (double prezzo, LocalDate dataScadenza, Tipo tipo) {
+            public Carne (double prezzo, LocalDate dataScadenza, TipoCarne tipo) {
                 super(prezzo, Optional.ofNullable(dataScadenza));
                 this.tipo = tipo;
             }
 
             // Metodo per ottenere il tipo di carne
-            public Tipo getTipo() {
+            public TipoCarne getTipoCarne() {
                 return this.tipo;
             }
 }
