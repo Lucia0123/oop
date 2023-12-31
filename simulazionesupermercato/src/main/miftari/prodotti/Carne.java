@@ -9,8 +9,8 @@ public class Carne extends ProdottoAlimentare{
 
             // Costruttore che chiama il costruttore della classe base e imposta dati specifici della carne
             public Carne (double prezzo, LocalDate dataScadenza,
-double PesoConfezione, 
-int QuantitaConfezione,TipoCarne tipoCarne) {
+double pesoConfezione, 
+int quantitaConfezione,TipoCarne tipoCarne) {
                 super(prezzo, Optional.ofNullable(dataScadenza));
                 
   this.tipoCarne = tipoCarne;
