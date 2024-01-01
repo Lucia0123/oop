@@ -21,7 +21,7 @@ class TestDetersivo {
 
         // Verificare che lo stato iniziale sia corretto
         assertEquals(prezzo, detersivo.getPrezzo(), 0.001);
-        assertEquals(dataScadenza, detersivo.getDataScad());
+        assertEquals(dataScadenza, carne.getDataScad().toLocalDate());
         assertEquals(tipo, detersivo.getTipo());
     }
 
