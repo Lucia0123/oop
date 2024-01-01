@@ -7,14 +7,14 @@ public class Detersivo extends ProdottoNonAlimentare{
 
 	 private Tipo tipo;
 
-	    // Costruttore che chiama il costruttore della classe base e imposta dati specifici del Detersivo
-	    public Detersivo(double prezzo, LocalDate dataScadenza, Tipo tipo) {
-	        super(prezzo, Optional.ofNullable(dataScadenza));
-	        this.tipo = tipo;
-	    }
+	 // Costruttore che chiama il costruttore della classe base e imposta dati specifici del Detersivo
+	 public Detersivo(double prezzo, LocalDate dataScadenza, Tipo tipo) {
+		 super(prezzo, Optional.ofNullable(dataScadenza));
+	     this.tipo = tipo;
+	 }
 
-	    // Metodo per ottenere il tipo di detersivo
-	    public Tipo getTipo() {
-	        return this.tipo;
-	    }
+	 // Metodo per ottenere il tipo di detersivo
+	 public Tipo getTipo() {
+		 return this.tipo;
+	 }
 }

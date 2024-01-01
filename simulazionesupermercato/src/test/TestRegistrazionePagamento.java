@@ -8,7 +8,6 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import main.melle.zonacasse.RegistrazionePagamento;
-import main.miftari.prodotti.Colore;
 import main.miftari.prodotti.Detersivo;
 import main.miftari.prodotti.Prodotto;
 import main.miftari.prodotti.Taglia;
@@ -24,10 +23,9 @@ class TestRegistrazionePagamento {
 		LocalDate dataScad = LocalDate.now();
 		Tipo tipoDetersivo = Tipo.PER_PIATTI;
 		Taglia taglia = Taglia.L;
-		Colore colore = Colore.GIALLO;
 		double costoDaRegistrare = prezzoDetersivo + prezzoVestito;
 		
-		List<Prodotto> p = List.of(new Detersivo(prezzoDetersivo, dataScad, tipoDetersivo), new Vestito(prezzoVestito, taglia, colore));
+		List<Prodotto> p = List.of(new Detersivo(prezzoDetersivo, dataScad, tipoDetersivo), new Vestito(prezzoVestito, taglia));
 		RegistrazionePagamento pagamento = new RegistrazionePagamento(p, costoDaRegistrare);
 		assertArrayEquals(pagamento.getProdottiVenduti().toArray(), p.toArray());
 	}
@@ -39,12 +37,11 @@ class TestRegistrazionePagamento {
 		LocalDate dataScad = LocalDate.now();
 		Tipo tipoDetersivo = Tipo.PER_PIATTI;
 		Taglia taglia = Taglia.L;
-		Colore colore = Colore.GIALLO;
 		double costoDaRegistrare = prezzoDetersivo + prezzoVestito;
 		
-		List<Prodotto> p = List.of(new Detersivo(prezzoDetersivo, dataScad, tipoDetersivo), new Vestito(prezzoVestito, taglia, colore));
+		List<Prodotto> p = List.of(new Detersivo(prezzoDetersivo, dataScad, tipoDetersivo), new Vestito(prezzoVestito, taglia));
 		RegistrazionePagamento pagamento = new RegistrazionePagamento(p, costoDaRegistrare);
-		assertTrue(pagamento.getCosto() - costoDaRegistrare < 0.05);
+		assertEquals(pagamento.getCosto(), costoDaRegistrare, 0.001);
 	}
 
 }

@@ -7,26 +7,31 @@ import main.melle.tempo.Tempo;
 
 public class FactoryDiProdotto {
 
-	// creazione random di prodotti per velocizzare la creazione di oggetti di tipo Prodotto
+	// generazione casuale del prezzo
+	private double generaPrezzo() {
+		return new Random().nextDouble(Prodotto.getPrezzoMin(), Prodotto.getPrezzoMax());
+	}
+	
+	// metodi per la creazione di prodotti per velocizzare la creazione di questi
 		
-	public Carne creaCarne() {
-		//Random random = new Random();
-		double prezzoRandom = new Random().nextDouble(Prodotto.getPrezzoMin(), Prodotto.getPrezzoMax());
-		LocalDate dataRandom = Tempo.getDataCasuale();
+	public Carne creaCarne(TipoCarne tipoCarne) {
+		LocalDate dataScadenzaRandom = Tempo.getDataCasuale();
 		double pesoConfezioneRandom = new Random().nextDouble();
-		TipoCarne tipoCarne = TipoCarne.DI_MAIALE;
-		return new Carne(prezzoRandom, dataRandom, pesoConfezioneRandom, tipoCarne);
+		return new Carne(generaPrezzo(), dataScadenzaRandom, pesoConfezioneRandom, tipoCarne);
 	}
 	
-	public Farina creaFarina() {
-		
+	public Farina creaFarina(MarcaFarina marca) {
+		LocalDate dataScadenzaRandom = Tempo.getDataCasuale();
+		double pesoConfezioneRandom = new Random().nextDouble();
+		return new Farina(generaPrezzo(), dataScadenzaRandom, marca, pesoConfezioneRandom);
 	}
 	
-	public Detersivo creaDetersivo() {
-		
+	public Detersivo creaDetersivo(Tipo tipo) {
+		LocalDate dataScadenzaRandom = Tempo.getDataCasuale();
+		return new Detersivo(generaPrezzo(), dataScadenzaRandom, tipo);
 	}
 	
-	public Vestito creaVestito() {
-		
+	public Vestito creaVestito(Taglia taglia) {
+		return new Vestito(generaPrezzo(), taglia);
 	}
 }

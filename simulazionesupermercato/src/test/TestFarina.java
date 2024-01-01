@@ -16,14 +16,13 @@ class TestFarina {
         double prezzo = 1.60;
         LocalDate dataScadenza = LocalDate.of(2025, 11, 31);
         double pesoConfezione = 1;
-        int quantitaConfezione = 1;
         MarcaFarina marca = MarcaFarina.DE_CECCO;
 
-        Farina farina = new Farina(prezzo, dataScadenza, marca, pesoConfezione, quantitaConfezione);
+        Farina farina = new Farina(prezzo, dataScadenza, marca, pesoConfezione);
 
         // Verificare che lo stato iniziale sia corretto
         assertEquals(prezzo, farina.getPrezzo(), 0.001);
-        assertEquals(dataScadenza, farina.getDataScad().toLocalDate());
+        assertEquals(dataScadenza, farina.getDataScad());
         assertEquals(marca, farina.getMarcaFarina());
     }
 
@@ -32,10 +31,9 @@ class TestFarina {
         double prezzo = 1.90;
         LocalDate dataScadenza = LocalDate.of(2027, 12, 31);
         double pesoConfezione = 1;
-        int quantitaConfezione = 1;
         MarcaFarina marca = MarcaFarina.CAPUTO;
 
-        Farina farina = new Farina(prezzo, dataScadenza, marca, pesoConfezione, quantitaConfezione);
+        Farina farina = new Farina(prezzo, dataScadenza, marca, pesoConfezione);
 
         // Verificare che il metodo getMarcaFarina() restituisca il valore corretto
         assertEquals(marca, farina.getMarcaFarina());
