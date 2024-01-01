@@ -1,5 +1,6 @@
 package main.melle.supermercato;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import main.melle.zonacarrelli.ZonaCarrelli;
@@ -18,4 +19,5 @@ public interface Supermercato {
 	public List<Reparto> getReparti();
 	
 	public List<Prodotto> getProdottiInTotale();
+
 }

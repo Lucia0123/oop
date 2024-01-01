@@ -1,5 +1,6 @@
 package main.melle.supermercato;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import main.melle.zonacarrelli.ZonaCarrelli;
@@ -7,7 +8,7 @@ import main.melle.zonacasse.ZonaCasse;
 import main.miftari.prodotti.Prodotto;
 
 public class SupermercatoImpl implements Supermercato{
-
+	
 	private final UfficioAmministrativo ufficioAmministrativo;
 	private final UfficioLogistica ufficioLogistica;
 	private final ZonaCasse zonaCasse;

@@ -28,4 +28,12 @@ public abstract class Prodotto {
 		return null;
 					
 	}
+	
+	public static double getPrezzoMin() {
+		return PREZZO_MIN;
+	}
+	
+	public static double getPrezzoMax() {
+		return PREZZO_MAX;
+	}
 }

@@ -1,6 +1,5 @@
 package main.melle.clienti;
 
-import java.util.List;
 import java.util.Optional;
 
 import main.melle.zonacarrelli.Carrello;

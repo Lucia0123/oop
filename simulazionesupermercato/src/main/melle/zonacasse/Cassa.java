@@ -7,13 +7,14 @@ import main.melle.clienti.Cliente;
 
 public class Cassa {
 
-	private int ID = 0;
+	private int ID;
+	private static int prossimoID = 1;
 	private final RegistratoreDiCassa registratore;
 	private Queue<Cliente> coda;
 	private int nClientiInCoda;
 	
 	public Cassa() {
-		ID += 1;
+		ID = prossimoID++;
 		this.registratore = new RegistratoreDiCassa();
 		this.coda = new LinkedList<>();
 		nClientiInCoda = 0;
@@ -41,11 +42,7 @@ public class Cassa {
 	}
 	
 	public Cliente getClienteDaServire() {
-		if(!(this.coda.isEmpty())) {
-			Cliente daServire = this.coda.element();
-			return daServire;
-		}
-		return null;
+		return this.coda.peek();
 	}
 	
 }

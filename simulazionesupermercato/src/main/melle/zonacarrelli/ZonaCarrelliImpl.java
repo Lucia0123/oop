@@ -1,6 +1,5 @@
 package main.melle.zonacarrelli;
 
-import java.util.List;
 import java.util.Stack;
 
 public class ZonaCarrelliImpl implements ZonaCarrelli{

@@ -8,7 +8,6 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import main.melle.zonacasse.RegistratoreDiCassa;
-import main.melle.zonacasse.RegistrazionePagamento;
 import main.miftari.prodotti.Colore;
 import main.miftari.prodotti.Detersivo;
 import main.miftari.prodotti.Prodotto;

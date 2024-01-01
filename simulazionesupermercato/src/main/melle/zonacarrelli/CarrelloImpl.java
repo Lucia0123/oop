@@ -18,7 +18,7 @@ public class CarrelloImpl implements Carrello{
 	}
 	
 	public int getCapacitaMax() {
-		return this.CAPACITAMAX;
+		return CAPACITAMAX;
 	}
 
 	public List<Prodotto> getProdottiInCarrello() {
