@@ -1,5 +1,6 @@
 package main.melle.zonacasse;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import main.miftari.prodotti.Prodotto;
@@ -7,23 +8,25 @@ import main.miftari.prodotti.Prodotto;
 public class RegistratoreDiCassa {
 	
 	private double guadagno;
-	private List<Pagamento> pagamentiEffettuati;
+	private List<RegistrazionePagamento> pagamentiEffettuati;
 	
 	public RegistratoreDiCassa() {
 		this.guadagno = 0.0;
-		this.pagamentiEffettuati = null;
+		this.pagamentiEffettuati = new ArrayList<>();
 	}
 	
+	// metodo che restituisce l'esito della registrazione del pagamento
 	public boolean registraPagamento(List<Prodotto> l, double costo) {
-		if(this.calcolaCostoSpesa(l) == costo) {
-			Pagamento nuovoPagamento = new Pagamento(l, costo);
+		if(this.calcolaCostoSpesa(l) == costo) { // controllo se costo rappresenta la giusta somma da pagare
+			RegistrazionePagamento nuovoPagamento = new RegistrazionePagamento(l, costo);
 			this.pagamentiEffettuati.add(nuovoPagamento);
+			this.guadagno += costo;
 			return true;
 		}
 		return false;
 	}
 	
-	public List<Pagamento> getPagamentiEffettuati(){
+	public List<RegistrazionePagamento> getPagamentiEffettuati(){
 		return this.pagamentiEffettuati;
 	}
 	
