@@ -8,7 +8,7 @@ import main.miftari.prodotti.Prodotto;
 
 public class CarrelloImpl implements Carrello{
 	
-	private static final int CAPACITAMAX = 30;  // massimo numero di prodotti aggiungibili al carrello
+	private static final int CAPACITAMAX = 30;
 	private List<Prodotto> prodottiInCarrello; 	// prodotti attualmente nel carrello
 	private int NProdottiInCarrello; 			// numero di prodotti attualmente nel carrello
 	
@@ -41,6 +41,7 @@ public class CarrelloImpl implements Carrello{
 	public Prodotto togliProdotto() {
 		if(this.NProdottiInCarrello > 0) {
 			Prodotto prodottoTolto = this.prodottiInCarrello.remove((new Random()).nextInt(this.prodottiInCarrello.size()));
+			this.NProdottiInCarrello -= 1;
 			return prodottoTolto;
 		}
 		return null;

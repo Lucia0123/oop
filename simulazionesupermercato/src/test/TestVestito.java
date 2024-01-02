@@ -32,4 +32,14 @@ class TestVestito {
         assertEquals(taglia, vestito.getTaglia());
     }
 
+    @Test
+    public void testGetPrezzo() {
+    	double prezzo = 18.75;
+        Taglia taglia = Taglia.S;
+
+        Vestito vestito = new Vestito(prezzo, taglia);
+
+        // Verificare che il metodo getPrezzo restituisca il valore corretto
+        assertEquals(prezzo, vestito.getPrezzo(), 0.001);
+    }
 }

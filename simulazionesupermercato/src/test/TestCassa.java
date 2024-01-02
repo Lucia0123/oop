@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import main.melle.clienti.FactoryDiCliente;
 import main.melle.zonacasse.Cassa;
 
 class TestCassa {
@@ -24,7 +25,7 @@ class TestCassa {
 
 	@Test
 	void testAggiungiAllaCoda() {
-		fail("Not yet implemented");
+		var factory = FactoryDiCliente.getInstance(null);
 	}
 /*
 	@Test

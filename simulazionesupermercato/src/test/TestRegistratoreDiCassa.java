@@ -1,28 +1,29 @@
 package test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import main.melle.zonacasse.RegistratoreDiCassa;
-import main.miftari.prodotti.Detersivo;
+import main.miftari.prodotti.FactoryDiProdotto;
+import main.miftari.prodotti.MarcaFarina;
 import main.miftari.prodotti.Prodotto;
 import main.miftari.prodotti.Taglia;
 import main.miftari.prodotti.Tipo;
-import main.miftari.prodotti.Vestito;
+import main.miftari.prodotti.TipoCarne;
 
 class TestRegistratoreDiCassa {
 
 	@Test
 	void testRegistraPagamento() {
-		double prezzoDetersivo = 4.59;
-		double prezzoVestito = 13.65;
 		RegistratoreDiCassa registratore = new RegistratoreDiCassa();
-		List<Prodotto> lista = List.of(new Detersivo(prezzoDetersivo, LocalDate.now(), Tipo.PER_PIATTI), new Vestito(prezzoVestito, Taglia.S));
-		double costoTotaleGiusto = prezzoDetersivo + prezzoVestito;
+		var factory = new FactoryDiProdotto();
+		List<Prodotto> lista = List.of(factory.creaVestito(Taglia.M), factory.creaCarne(TipoCarne.DI_AGNELLO));
+		double costoTotaleGiusto = lista.get(0).getPrezzo() + lista.get(1).getPrezzo();
 		double costoTotaleSbagliato = 20.80;
 		assertTrue(registratore.registraPagamento(lista, costoTotaleGiusto));
 		assertFalse(registratore.registraPagamento(lista, costoTotaleSbagliato));
@@ -30,14 +31,12 @@ class TestRegistratoreDiCassa {
 
 	@Test
 	void testGetPagamentiEffettuati() {
-		double prezzoDetersivo = 4.59;
-		double prezzoVestito1 = 13.65;
-		double prezzoVestito2 = 17.05;
 		RegistratoreDiCassa registratore = new RegistratoreDiCassa();
-		List<Prodotto> lista1 = List.of(new Detersivo(prezzoDetersivo, LocalDate.now(), Tipo.PER_PIATTI), new Vestito(prezzoVestito1, Taglia.S));
-		List<Prodotto> lista2 = List.of(new Vestito(prezzoVestito2, Taglia.S));
-		double costoTotalePagamento1 = prezzoDetersivo + prezzoVestito1;
-		double costoTotalePagamento2 = prezzoVestito2;
+		var factory = new FactoryDiProdotto();
+		List<Prodotto> lista1 = List.of(factory.creaDetersivo(Tipo.PER_PIATTI), factory.creaVestito(Taglia.L));
+		List<Prodotto> lista2 = List.of(factory.creaVestito(Taglia.L));
+		double costoTotalePagamento1 = lista1.get(0).getPrezzo() + lista1.get(1).getPrezzo();
+		double costoTotalePagamento2 = lista2.get(0).getPrezzo();
 		registratore.registraPagamento(lista1, costoTotalePagamento1);
 		registratore.registraPagamento(lista2, costoTotalePagamento2);
 		// verifica per la lista dei prodotti venduti
@@ -51,11 +50,10 @@ class TestRegistratoreDiCassa {
 
     @Test
 	void testGetGuadagno() {
-		double prezzoDetersivo = 4.59;
-		double prezzoVestito = 13.65;
 		RegistratoreDiCassa registratore = new RegistratoreDiCassa();
-		List<Prodotto> lista = List.of(new Detersivo(prezzoDetersivo, LocalDate.now(), Tipo.PER_PIATTI), new Vestito(prezzoVestito, Taglia.S));
-		double costoTotalePagamento = prezzoDetersivo + prezzoVestito;
+		var factory = new FactoryDiProdotto();
+		List<Prodotto> lista = List.of(factory.creaDetersivo(Tipo.PER_LAVATRICE), factory.creaFarina(MarcaFarina.CAPUTO));
+		double costoTotalePagamento = lista.get(0).getPrezzo() + lista.get(1).getPrezzo();
 		double guadagnoInRegistratore = 0.0;
 		assertEquals(registratore.getGuadagno(), guadagnoInRegistratore, 0.001);
 		registratore.registraPagamento(lista, costoTotalePagamento);
@@ -65,15 +63,13 @@ class TestRegistratoreDiCassa {
 
 	@Test
 	void testPrelevaGuadagno() {
-		double prezzoDetersivo = 4.59;
-		double prezzoVestito = 13.65;
 		RegistratoreDiCassa registratore = new RegistratoreDiCassa();
-		List<Prodotto> lista = List.of(new Detersivo(prezzoDetersivo, LocalDate.now(), Tipo.PER_PIATTI), new Vestito(prezzoVestito, Taglia.S));
-		double costoTotalePagamento = prezzoDetersivo + prezzoVestito;
-		double guadagnoInRegistratore = 0.0;
+		var factory = new FactoryDiProdotto();
+		List<Prodotto> lista = List.of(factory.creaDetersivo(Tipo.PER_LAVATRICE), factory.creaFarina(MarcaFarina.CAPUTO));
+		double costoTotalePagamento = lista.get(0).getPrezzo() + lista.get(1).getPrezzo();
 		registratore.registraPagamento(lista, costoTotalePagamento);
-		guadagnoInRegistratore = costoTotalePagamento;
 		registratore.prelevaGuadagno();
+		double guadagnoInRegistratore = 0.0;
 		assertEquals(registratore.getGuadagno(), guadagnoInRegistratore, 0.001);
 	}
 }
