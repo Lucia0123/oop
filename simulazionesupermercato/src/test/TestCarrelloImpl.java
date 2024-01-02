@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import main.melle.zonacarrelli.CarrelloImpl;
 import main.miftari.prodotti.FactoryDiProdotto;
 import main.miftari.prodotti.Farina;
-import main.miftari.prodotti.MarcaFarina;
+import main.miftari.prodotti.TipoFarina;
 import main.miftari.prodotti.TipoCarne;
 
 class TestCarrelloImpl {
@@ -37,7 +37,7 @@ class TestCarrelloImpl {
 	void testAggiungiProdotto() {
 		CarrelloImpl carrello = new CarrelloImpl();
 		var factory = new FactoryDiProdotto();
-		Farina farina = factory.creaFarina(MarcaFarina.DE_CECCO);
+		Farina farina = factory.creaFarina(TipoFarina.DI_GLUTINE);
 		carrello.aggiungiProdotto(farina);
 		assertTrue(carrello.getProdottiInCarrello().contains(farina));
 	}
@@ -46,7 +46,7 @@ class TestCarrelloImpl {
 	void testTogliProdotto() {
 		CarrelloImpl carrello = new CarrelloImpl();
 		var factory = new FactoryDiProdotto();
-		Farina farina = factory.creaFarina(MarcaFarina.DE_CECCO);
+		Farina farina = factory.creaFarina(TipoFarina.TIPO_0);
 		carrello.aggiungiProdotto(farina);
 		assertTrue(carrello.getProdottiInCarrello().contains(farina));
 		carrello.togliProdotto();

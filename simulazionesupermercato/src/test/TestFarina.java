@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import org.junit.jupiter.api.Test;
 
 import main.miftari.prodotti.Farina;
-import main.miftari.prodotti.MarcaFarina;
+import main.miftari.prodotti.TipoFarina;
 
 class TestFarina {
 
@@ -16,7 +16,7 @@ class TestFarina {
         double prezzo = 1.60;
         LocalDate dataScadenza = LocalDate.of(2025, 11, 31);
         double pesoConfezione = 1;
-        MarcaFarina marca = MarcaFarina.DE_CECCO;
+        TipoFarina marca = TipoFarina.INTEGRALE;
 
         Farina farina = new Farina(prezzo, dataScadenza, marca, pesoConfezione);
 

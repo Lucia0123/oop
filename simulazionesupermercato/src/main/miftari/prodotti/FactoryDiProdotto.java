@@ -20,7 +20,7 @@ public class FactoryDiProdotto {
 		return new Carne(generaPrezzo(), dataScadenzaRandom, pesoConfezioneRandom, tipoCarne);
 	}
 	
-	public Farina creaFarina(MarcaFarina marca) {
+	public Farina creaFarina(TipoFarina marca) {
 		LocalDate dataScadenzaRandom = Tempo.getDataCasuale();
 		double pesoConfezioneRandom = new Random().nextDouble();
 		return new Farina(generaPrezzo(), dataScadenzaRandom, marca, pesoConfezioneRandom);

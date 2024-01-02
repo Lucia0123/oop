@@ -6,17 +6,17 @@ public class Farina extends ProdottoAlimentare {
 
 
 
-    private MarcaFarina marca;
+    private TipoFarina marca;
 
 
     // Costruttore che chiama il costruttore della classe base e imposta dati specifici della farina
-    public Farina(double prezzo, LocalDate dataScadenza, MarcaFarina marca, double pesoConfezione) {
+    public Farina(double prezzo, LocalDate dataScadenza, TipoFarina marca, double pesoConfezione) {
         super(prezzo, dataScadenza, pesoConfezione);
         this.marca = marca;
     }
 
     // Metodo per ottenere la marca della farina
-    public MarcaFarina getMarcaFarina() {
+    public TipoFarina getMarcaFarina() {
         return this.marca;
     }
 }

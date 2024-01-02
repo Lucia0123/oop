@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import main.melle.zonacasse.RegistratoreDiCassa;
 import main.miftari.prodotti.FactoryDiProdotto;
-import main.miftari.prodotti.MarcaFarina;
+import main.miftari.prodotti.TipoFarina;
 import main.miftari.prodotti.Prodotto;
 import main.miftari.prodotti.Taglia;
 import main.miftari.prodotti.Tipo;
@@ -52,7 +52,7 @@ class TestRegistratoreDiCassa {
 	void testGetGuadagno() {
 		RegistratoreDiCassa registratore = new RegistratoreDiCassa();
 		var factory = new FactoryDiProdotto();
-		List<Prodotto> lista = List.of(factory.creaDetersivo(Tipo.PER_LAVATRICE), factory.creaFarina(MarcaFarina.CAPUTO));
+		List<Prodotto> lista = List.of(factory.creaDetersivo(Tipo.PER_LAVATRICE), factory.creaFarina(TipoFarina.INTEGRALE));
 		double costoTotalePagamento = lista.get(0).getPrezzo() + lista.get(1).getPrezzo();
 		double guadagnoInRegistratore = 0.0;
 		assertEquals(registratore.getGuadagno(), guadagnoInRegistratore, 0.001);
@@ -65,7 +65,7 @@ class TestRegistratoreDiCassa {
 	void testPrelevaGuadagno() {
 		RegistratoreDiCassa registratore = new RegistratoreDiCassa();
 		var factory = new FactoryDiProdotto();
-		List<Prodotto> lista = List.of(factory.creaDetersivo(Tipo.PER_LAVATRICE), factory.creaFarina(MarcaFarina.CAPUTO));
+		List<Prodotto> lista = List.of(factory.creaDetersivo(Tipo.PER_LAVATRICE), factory.creaFarina(TipoFarina.TIPO_0));
 		double costoTotalePagamento = lista.get(0).getPrezzo() + lista.get(1).getPrezzo();
 		registratore.registraPagamento(lista, costoTotalePagamento);
 		registratore.prelevaGuadagno();
