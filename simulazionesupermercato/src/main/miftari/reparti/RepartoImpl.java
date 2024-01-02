@@ -28,14 +28,15 @@ public class RepartoImpl implements Reparto{
 		return CAPACITA_MAX;
 	}
 
-	public int getCapacitaAttuale() {
+	public int aggiornaCapacitaAttuale() {
+		this.capacitaAttuale = this.prodottiInReparto.size();
 		return this.capacitaAttuale;
 	}
 
 	// metodo per prelevare un prodotto dal reparto
 	public Prodotto prendiProdotto(Prodotto prodotto) {
 		Prodotto valoreDiRitorno = null;
-		if(prodotto != null && this.capacitaAttuale > 0 && this.prodottiInReparto.contains(prodotto)) {
+		if(prodotto != null && this.prodottiInReparto.contains(prodotto)) {
 			if(this.etichetta == Etichetta.REPARTO_ALIMENTARE) {
 				if(prodotto instanceof ProdottoAlimentare) {
 					// cerco prodotto alimentare da prelevare, lo elimino dal reparto e lo restituisco
@@ -59,8 +60,20 @@ public class RepartoImpl implements Reparto{
 
 	// metodo per aggiungere un prodotto in reparto
 	public void aggiungiProdotto(Prodotto prodotto) {
-		// TODO Auto-generated method stub
-		
+		if(prodotto != null && this.capacitaAttuale > 0) {
+			if(this.etichetta == Etichetta.REPARTO_ALIMENTARE) {
+				if(prodotto instanceof ProdottoAlimentare) {
+					// aggiungo prodotto alimentare in reparto
+					this.prodottiInReparto.add(prodotto);
+				}	
+			}
+			else{
+				if(prodotto instanceof ProdottoNonAlimentare) {
+					// aggiungo prodotto non alimentare in reparto
+					this.prodottiInReparto.add(prodotto);
+				}		
+			}			
+		}		
 	}
 	
 	private Prodotto rimuoviERestituisci(Prodotto prodotto) {
