@@ -17,8 +17,7 @@ public class Cassa {
 		ID = prossimoID++;
 		this.registratore = new RegistratoreDiCassa();
 		this.coda = new LinkedList<>();
-		nClientiInCoda = 0;
-		
+		nClientiInCoda = 0;	
 	}
 	
 	public int getID() {
@@ -30,14 +29,19 @@ public class Cassa {
 	}
 	
 	public void aggiungiAllaCoda(Cliente cliente) {
-		this.coda.add(cliente);
+		if(cliente != null && (!coda.contains(cliente))) {
+			this.coda.add(cliente);
+		}
 	}
 	
 	public void togliDallaCoda(Cliente daTogliere) {
-		this.coda.remove();
+		if(!(this.coda.isEmpty()) && daTogliere != null && daTogliere == this.getClienteDaServire()) { // si può togliere solo il cliente in testa alla coda
+			this.coda.remove();
+		}
 	}
 	
 	public int getNClientiInCoda() {
+		this.nClientiInCoda = coda.size();
 		return this.nClientiInCoda;
 	}
 	

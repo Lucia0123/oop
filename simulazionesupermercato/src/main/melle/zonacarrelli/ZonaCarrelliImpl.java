@@ -1,5 +1,6 @@
 package main.melle.zonacarrelli;
 
+import java.util.List;
 import java.util.Stack;
 
 public class ZonaCarrelliImpl implements ZonaCarrelli{
@@ -21,7 +22,12 @@ public class ZonaCarrelliImpl implements ZonaCarrelli{
 	}
 
 	public int getNCarrelliLiberi() {
+		this.nCarrelliLiberi = this.carrelli.size();
 		return this.nCarrelliLiberi;
+	}
+	
+	public List<Carrello> getCarrelliLiberi(){
+		return List.copyOf(this.carrelli);
 	}
 	
 	public Carrello ritiraCarrello() {

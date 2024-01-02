@@ -6,16 +6,19 @@ import org.junit.jupiter.api.Test;
 
 import main.melle.zonacarrelli.CarrelloImpl;
 import main.miftari.prodotti.FactoryDiProdotto;
+import main.miftari.prodotti.Farina;
+import main.miftari.prodotti.MarcaFarina;
 import main.miftari.prodotti.TipoCarne;
 
 class TestCarrelloImpl {
-/*
+
 	@Test
 	void testGetProdottiInCarrello() {
 		CarrelloImpl carrello = new CarrelloImpl();
+		assertTrue(carrello.getProdottiInCarrello().isEmpty());
 		
 	}
-*/
+
 	@Test
 	void testGetNProdottiInCarrello() {
 		CarrelloImpl carrello = new CarrelloImpl();
@@ -25,16 +28,29 @@ class TestCarrelloImpl {
 		carrello.aggiungiProdotto(factory.creaCarne(TipoCarne.DI_MANZO));
 		nProdotti = 1;
 		assertEquals(carrello.getNProdottiInCarrello(), nProdotti);
+		carrello.togliProdotto();
+		nProdotti = 0;
+		assertEquals(carrello.getNProdottiInCarrello(), nProdotti);
 	}
-/*
+
 	@Test
 	void testAggiungiProdotto() {
-		fail("Not yet implemented");
+		CarrelloImpl carrello = new CarrelloImpl();
+		var factory = new FactoryDiProdotto();
+		Farina farina = factory.creaFarina(MarcaFarina.DE_CECCO);
+		carrello.aggiungiProdotto(farina);
+		assertTrue(carrello.getProdottiInCarrello().contains(farina));
 	}
 
 	@Test
 	void testTogliProdotto() {
-		fail("Not yet implemented");
+		CarrelloImpl carrello = new CarrelloImpl();
+		var factory = new FactoryDiProdotto();
+		Farina farina = factory.creaFarina(MarcaFarina.DE_CECCO);
+		carrello.aggiungiProdotto(farina);
+		assertTrue(carrello.getProdottiInCarrello().contains(farina));
+		carrello.togliProdotto();
+		assertFalse(carrello.getProdottiInCarrello().contains(farina));
 	}
-*/
+	
 }
