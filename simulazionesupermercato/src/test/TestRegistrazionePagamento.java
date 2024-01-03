@@ -11,7 +11,7 @@ import main.melle.zonacasse.RegistrazionePagamento;
 import main.miftari.prodotti.FactoryDiProdotto;
 import main.miftari.prodotti.TipoFarina;
 import main.miftari.prodotti.Prodotto;
-import main.miftari.prodotti.Tipo;
+import main.miftari.prodotti.TipoDetersivo;
 import main.miftari.prodotti.TipoCarne;
 
 class TestRegistrazionePagamento {
@@ -28,7 +28,7 @@ class TestRegistrazionePagamento {
 	@Test
 	void testGetCosto() {
 		FactoryDiProdotto factory = new FactoryDiProdotto();
-		List<Prodotto> p = List.of(factory.creaDetersivo(Tipo.PER_PIATTI), factory.creaFarina(TipoFarina.INTEGRALE));
+		List<Prodotto> p = List.of(factory.creaDetersivo(TipoDetersivo.PER_PIATTI), factory.creaFarina(TipoFarina.INTEGRALE));
 		double costoDaRegistrare = p.get(0).getPrezzo() + p.get(1).getPrezzo();
 		RegistrazionePagamento pagamento = new RegistrazionePagamento(p, costoDaRegistrare);
 		assertEquals(pagamento.getCosto(), costoDaRegistrare, 0.001);

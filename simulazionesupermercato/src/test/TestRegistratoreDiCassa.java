@@ -13,7 +13,7 @@ import main.miftari.prodotti.FactoryDiProdotto;
 import main.miftari.prodotti.TipoFarina;
 import main.miftari.prodotti.Prodotto;
 import main.miftari.prodotti.Taglia;
-import main.miftari.prodotti.Tipo;
+import main.miftari.prodotti.TipoDetersivo;
 import main.miftari.prodotti.TipoCarne;
 
 class TestRegistratoreDiCassa {
@@ -33,7 +33,7 @@ class TestRegistratoreDiCassa {
 	void testGetPagamentiEffettuati() {
 		RegistratoreDiCassa registratore = new RegistratoreDiCassa();
 		var factory = new FactoryDiProdotto();
-		List<Prodotto> lista1 = List.of(factory.creaDetersivo(Tipo.PER_PIATTI), factory.creaVestito(Taglia.L));
+		List<Prodotto> lista1 = List.of(factory.creaDetersivo(TipoDetersivo.PER_PIATTI), factory.creaVestito(Taglia.L));
 		List<Prodotto> lista2 = List.of(factory.creaVestito(Taglia.L));
 		double costoTotalePagamento1 = lista1.get(0).getPrezzo() + lista1.get(1).getPrezzo();
 		double costoTotalePagamento2 = lista2.get(0).getPrezzo();
@@ -52,7 +52,7 @@ class TestRegistratoreDiCassa {
 	void testGetGuadagno() {
 		RegistratoreDiCassa registratore = new RegistratoreDiCassa();
 		var factory = new FactoryDiProdotto();
-		List<Prodotto> lista = List.of(factory.creaDetersivo(Tipo.PER_LAVATRICE), factory.creaFarina(TipoFarina.INTEGRALE));
+		List<Prodotto> lista = List.of(factory.creaDetersivo(TipoDetersivo.PER_LAVATRICE), factory.creaFarina(TipoFarina.INTEGRALE));
 		double costoTotalePagamento = lista.get(0).getPrezzo() + lista.get(1).getPrezzo();
 		double guadagnoInRegistratore = 0.0;
 		assertEquals(registratore.getGuadagno(), guadagnoInRegistratore, 0.001);
@@ -65,7 +65,7 @@ class TestRegistratoreDiCassa {
 	void testPrelevaGuadagno() {
 		RegistratoreDiCassa registratore = new RegistratoreDiCassa();
 		var factory = new FactoryDiProdotto();
-		List<Prodotto> lista = List.of(factory.creaDetersivo(Tipo.PER_LAVATRICE), factory.creaFarina(TipoFarina.TIPO_0));
+		List<Prodotto> lista = List.of(factory.creaDetersivo(TipoDetersivo.PER_LAVATRICE), factory.creaFarina(TipoFarina.TIPO_0));
 		double costoTotalePagamento = lista.get(0).getPrezzo() + lista.get(1).getPrezzo();
 		registratore.registraPagamento(lista, costoTotalePagamento);
 		registratore.prelevaGuadagno();

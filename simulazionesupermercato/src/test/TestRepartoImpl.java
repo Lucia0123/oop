@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import main.miftari.prodotti.FactoryDiProdotto;
 import main.miftari.prodotti.Prodotto;
-import main.miftari.prodotti.Tipo;
+import main.miftari.prodotti.TipoDetersivo;
 import main.miftari.prodotti.TipoFarina;
 import main.miftari.reparti.Etichetta;
 import main.miftari.reparti.RepartoImpl;
@@ -25,7 +25,7 @@ class TestRepartoImpl {
 		
 		// in un reparto alimentare si accettano solo prodotti alimentari, nei reparti non alimentari solo prodotti non alimentari
 		Prodotto prodottoAl = factory.creaFarina(TipoFarina.TIPO_0);
-		Prodotto prodottoNonAl = factory.creaDetersivo(Tipo.PER_PIATTI);
+		Prodotto prodottoNonAl = factory.creaDetersivo(TipoDetersivo.PER_PIATTI);
 		repartoAl.aggiungiProdotto(prodottoNonAl);
 		assertFalse(repartoAl.getProdotti().contains(prodottoNonAl));
 		repartoNonAl.aggiungiProdotto(prodottoAl);
@@ -48,7 +48,7 @@ class TestRepartoImpl {
 		// verifica del valore di ritorno in caso si voglia prendere un prodotto non presente in reparto
 		RepartoImpl repartoNonAl = new RepartoImpl(Etichetta.REPARTO_NON_ALIMENTARE);
 		Prodotto prodottoAl = factory.creaFarina(TipoFarina.TIPO_0);
-		Prodotto prodottoNonAl = factory.creaDetersivo(Tipo.PER_PIATTI);
+		Prodotto prodottoNonAl = factory.creaDetersivo(TipoDetersivo.PER_PIATTI);
 		
 		repartoAl.aggiungiProdotto(prodottoAl);
 		repartoNonAl.aggiungiProdotto(prodottoNonAl);

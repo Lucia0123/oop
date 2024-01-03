@@ -28,6 +28,7 @@ public class RepartoImpl implements Reparto{
 		return CAPACITA_MAX;
 	}
 
+	// aggiorna e restituisce la capacita attuale
 	public int aggiornaCapacitaAttuale() {
 		this.capacitaAttuale = this.prodottiInReparto.size();
 		return this.capacitaAttuale;

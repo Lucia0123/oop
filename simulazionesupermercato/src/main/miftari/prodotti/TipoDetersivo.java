@@ -1,6 +1,6 @@
 package main.miftari.prodotti;
 
-public enum Tipo {
+public enum TipoDetersivo {
 
 	PER_PIATTI, PER_LAVATRICE;
 }

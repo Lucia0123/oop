@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import org.junit.jupiter.api.Test;
 
 import main.miftari.prodotti.Detersivo;
-import main.miftari.prodotti.Tipo;
+import main.miftari.prodotti.TipoDetersivo;
 
 class TestDetersivo {
 
@@ -15,14 +15,14 @@ class TestDetersivo {
     public void testCostruttore() {
         double prezzo = 15.99;
         LocalDate dataScadenza = LocalDate.of(2023, 12, 31);
-        Tipo tipo = Tipo.PER_PIATTI;
+        TipoDetersivo tipoDetersivo = TipoDetersivo.PER_PIATTI;
 
-        Detersivo detersivo = new Detersivo(prezzo, dataScadenza, tipo);
+        Detersivo detersivo = new Detersivo(prezzo, dataScadenza, tipoDetersivo);
 
         // Verificare che lo stato iniziale sia corretto
         assertEquals(prezzo, detersivo.getPrezzo(), 0.001);
         assertEquals(dataScadenza, detersivo.getDataScad());
-        assertEquals(tipo, detersivo.getTipo());
+        assertEquals(tipoDetersivo, detersivo.getTipo());
     }
 
 }

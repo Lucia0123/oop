@@ -26,9 +26,9 @@ public class FactoryDiProdotto {
 		return new Farina(generaPrezzo(), dataScadenzaRandom, marca, pesoConfezioneRandom);
 	}
 	
-	public Detersivo creaDetersivo(Tipo tipo) {
+	public Detersivo creaDetersivo(TipoDetersivo tipoDetersivo) {
 		LocalDate dataScadenzaRandom = Tempo.getDataCasuale();
-		return new Detersivo(generaPrezzo(), dataScadenzaRandom, tipo);
+		return new Detersivo(generaPrezzo(), dataScadenzaRandom, tipoDetersivo);
 	}
 	
 	public Vestito creaVestito(Taglia taglia) {
