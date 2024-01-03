@@ -19,4 +19,13 @@ public class Farina extends ProdottoAlimentare {
     public TipoFarina getMarcaFarina() {
         return this.marca;
     }
+    
+    @Override
+    public boolean equals(Object o) {
+    	if(((Farina)o).getPrezzo() - this.getPrezzo() < 0.001 && ((Farina)o).getDataScad().equals(this.getDataScad())
+    		&& ((Farina)o).getPesoConfezione() - this.getPesoConfezione() < 0.001 && (((Farina)o).getMarcaFarina().compareTo(this.getMarcaFarina()) == 0)) {
+    		return true;
+    	}
+    	return false;
+    }
 }

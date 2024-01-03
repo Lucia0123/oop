@@ -17,4 +17,13 @@ public class Detersivo extends ProdottoNonAlimentare{
 	 public TipoDetersivo getTipo() {
 		 return this.tipoDetersivo;
 	 }
+	 
+	 @Override
+	    public boolean equals(Object o) {
+	    	if(((Detersivo)o).getPrezzo() - this.getPrezzo() < 0.001 && ((Detersivo)o).getDataScad().equals(this.getDataScad())
+	    		&& (((Detersivo)o).getTipo().compareTo(this.getTipo()) == 0)) {
+	    		return true;
+	    	}
+	    	return false;
+	    }
 }
