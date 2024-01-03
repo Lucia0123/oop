@@ -4,20 +4,23 @@ import java.time.LocalDate;
 import java.util.List;
 
 import main.melle.zonacarrelli.ZonaCarrelli;
+import main.miftari.magazzino.Magazzino;
 import main.miftari.prodotti.Prodotto;
+import main.miftari.reparti.Reparto;
 
 public interface Supermercato {
 
-	public UfficioAmministrativo getUfficioAmministrativo();
+	UfficioAmministrativo getUfficioAmministrativo();
 	
-	public UfficioLogistica getUfficioLogistica();
+	UfficioLogistica getUfficioLogistica();
 	
-	public ZonaCarrelli getZonaCarrelli();
+	ZonaCarrelli getZonaCarrelli();
 	
-	public Magazzino getMagazzino();
+	Magazzino getMagazzino();
 	
-	public List<Reparto> getReparti();
+	List<Reparto> getReparti();
 	
-	public List<Prodotto> getProdottiInTotale();
+	List<Prodotto> getProdottiInTotale();
 
+	void setNReparti(int nuovoNumero);
 }

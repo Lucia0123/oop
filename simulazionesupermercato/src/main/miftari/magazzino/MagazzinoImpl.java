@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import main.melle.supermercato.Tempo;
 import main.miftari.prodotti.Carne;
 import main.miftari.prodotti.Detersivo;
 import main.miftari.prodotti.Farina;
@@ -39,7 +40,7 @@ public class MagazzinoImpl implements Magazzino{
 	
 	// aggiunta del prodotto in magazzino se questo non è scaduto e non è già contenuto in magazzino
 	public void aggiungi(Prodotto daAggiungere) {
-		if(daAggiungere != null && this.controllaScadenza(daAggiungere) && !this.prodottiInTot.contains(daAggiungere)) {
+		if(daAggiungere != null && !this.scaduto(daAggiungere) && !this.prodottiInTot.contains(daAggiungere)) {
 			this.smista(daAggiungere);
 			this.aggiornaProdottiInTot();
 		}
@@ -55,7 +56,8 @@ public class MagazzinoImpl implements Magazzino{
 						this.detersivi.remove(daPrelevare);
 					}
 					else {
-						this.vestiti.remove(daPrelevare);					}
+						this.vestiti.remove(daPrelevare);					
+						}
 				}
 				else {
 					if(this.controllaCategoria(daPrelevare) == 1) {
@@ -70,9 +72,12 @@ public class MagazzinoImpl implements Magazzino{
 		return daPrelevare;
 	}
 
-	// controllo della data di scadenza dei prodotti, restituisce false se il prodotto è scaduto
-	private boolean controllaScadenza(Prodotto daControllare) {
-		
+	// controllo della data di scadenza dei prodotti, restituisce true se il prodotto è scaduto
+	private boolean scaduto(Prodotto daControllare) {
+		if(daControllare.getDataScad().isAfter(Tempo.getDataAttuale())) {
+			return false;
+		}
+		return true;
 	}
 	
 	// smistamento del prodotto nella lista della sua categoria

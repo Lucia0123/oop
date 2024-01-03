@@ -49,4 +49,19 @@ public class Cassa {
 		return this.coda.peek();
 	}
 	
+	// se il cliente cercato è in coda alla Cassa, questo viene restituito
+	public Cliente cercaCliente(Cliente c) {
+		if(coda.contains(c)) {
+			return c;
+		}
+		return null;
+	}
+	
+	// restituisce tutti i clienti in coda
+	//(sfruttato ad esempio da ZonaCasseImpl in caso l'utente diminuisca il numero di casse attuali
+	// per non perdere i clienti delle casse eliminate)
+	Queue<Cliente> getClientiInCoda(){
+		return this.coda;
+	}
+	
 }

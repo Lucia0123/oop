@@ -1,5 +1,7 @@
 package test;
 
+import main.melle.zonacasse.*;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
@@ -8,22 +10,9 @@ class TestZonaCasseImpl {
 
 	@Test
 	void testZonaCasseImpl() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetNCasse() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetLunghezzaCoda() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetCassaConCodaPiuBreve() {
-		fail("Not yet implemented");
+		int numeroCasse = 3;
+		ZonaCasse zona = new ZonaCasseImpl(numeroCasse);
+		assertEquals(numeroCasse, zona.getNCasse());
 	}
 
 }

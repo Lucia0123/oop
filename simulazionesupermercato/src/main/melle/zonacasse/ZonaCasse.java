@@ -1,12 +1,14 @@
 package main.melle.zonacasse;
 
-import java.util.List;
+import main.melle.clienti.Cliente;
 
 public interface ZonaCasse {
 
 	int getNCasse();
 	
-	int getLunghezzaCoda(Cassa cassa);
+	boolean setNCasse(int nuovoNumero);
+		
+	void aggiungiAllaCodaPiuBreve(Cliente c);
 	
-	Cassa getCassaConCodaPiuBreve();
+	void togliDallaCoda(Cliente c, Cassa cassa);
 }
