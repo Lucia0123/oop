@@ -7,6 +7,10 @@ public class Tempo {
 	boolean simulazioneAttiva = false;
 	private static LocalDate dataAttuale = LocalDate.EPOCH; // 1970-01-01
 	
+	public Tempo(){
+		this.simulazioneAttiva = true;
+	}
+	
 	public static LocalDate getDataAttuale() {
 		return dataAttuale;
 	}
@@ -29,6 +33,10 @@ public class Tempo {
 	
 	public void vaiAvantiDiUnGiorno() {
 		dataAttuale = dataAttuale.plusDays(1);
+	}
+	
+	public void stopTempo() {
+		this.simulazioneAttiva = false;
 	}
 }
 

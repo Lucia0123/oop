@@ -6,6 +6,7 @@ import java.util.List;
 import main.melle.zonacarrelli.ZonaCarrelli;
 import main.miftari.magazzino.Magazzino;
 import main.miftari.prodotti.Prodotto;
+import main.miftari.reparti.Etichetta;
 import main.miftari.reparti.Reparto;
 
 public interface Supermercato {
@@ -22,5 +23,9 @@ public interface Supermercato {
 	
 	List<Prodotto> getProdottiInTotale();
 
-	void setNReparti(int nuovoNumero);
+	void aggiungiReparto(Etichetta etichetta);
+	
+	public void aggiungiReparto();
+	
+	public Tempo getTempo();
 }

@@ -37,6 +37,22 @@ public class MagazzinoImpl implements Magazzino{
 		this.prodottiInTot.addAll(this.vestiti);
 		return List.copyOf(this.prodottiInTot);
 	}
+
+	public List<Prodotto> getProdottiCarne() {
+		return List.copyOf(this.carni);
+	}
+
+	public List<Prodotto> getProdottiFarina() {
+		return List.copyOf(this.farine);
+	}
+
+	public List<Prodotto> getProdottiDetersivo() {
+		return List.copyOf(this.detersivi);
+	}
+
+	public List<Prodotto> getProdottiVestito() {
+		return List.copyOf(this.vestiti);
+	}
 	
 	// aggiunta del prodotto in magazzino se questo non è scaduto e non è già contenuto in magazzino
 	public void aggiungi(Prodotto daAggiungere) {
