@@ -90,7 +90,7 @@ public class RepartoImpl implements Reparto{
 	
 	private Prodotto rimuoviERestituisci(Prodotto prodotto) {
 		Prodotto daPrendere = this.prodottiInReparto.get(this.prodottiInReparto.indexOf(prodotto));
-		this.prodottiInReparto.remove(daPrendere);
+		if(this.prodottiInReparto.remove(daPrendere));
 		return daPrendere;
 	}
 	

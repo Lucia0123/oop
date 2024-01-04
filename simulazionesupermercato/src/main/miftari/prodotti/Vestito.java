@@ -19,8 +19,10 @@ public class Vestito extends ProdottoNonAlimentare{
 
     @Override
     public boolean equals(Object o) {
-    	if(((Vestito)o).getPrezzo() - this.getPrezzo() < 0.001 && (((Vestito)o).getTaglia().compareTo(this.getTaglia()) == 0)) {
-    		return true;
+    	if(o instanceof Vestito) {
+    		if(((Vestito)o).getPrezzo() - this.getPrezzo() < 0.001 && (((Vestito)o).getTaglia().compareTo(this.getTaglia()) == 0)) {
+        		return true;
+        	}
     	}
     	return false;
     }

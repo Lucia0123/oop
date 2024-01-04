@@ -49,7 +49,7 @@ class TestRepartoImpl {
 		RepartoImpl repartoNonAl = new RepartoImpl(Etichetta.REPARTO_NON_ALIMENTARE);
 		Prodotto prodottoAl = factory.creaFarina(TipoFarina.TIPO_0);
 		Prodotto prodottoNonAl = factory.creaDetersivo(TipoDetersivo.PER_PIATTI);
-		
+				
 		repartoAl.aggiungiProdotto(prodottoAl);
 		repartoNonAl.aggiungiProdotto(prodottoNonAl);
 		assertEquals(null, repartoAl.prendiProdotto(prodottoNonAl)); // si vuole prendere un prodotto non presente
@@ -57,6 +57,7 @@ class TestRepartoImpl {
 		repartoNonAl.prendiProdotto(prodottoNonAl);
 		assertTrue(repartoAl.getProdotti().isEmpty());
 		assertTrue(repartoNonAl.getProdotti().isEmpty());
+
 	}
 
 }

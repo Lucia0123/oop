@@ -19,9 +19,11 @@ public class Carne extends ProdottoAlimentare{
     
     @Override
     public boolean equals(Object o) {
-    	if(((Carne)o).getPrezzo() - this.getPrezzo() < 0.001 && ((Carne)o).getDataScad().equals(this.getDataScad())
-    		&& ((Carne)o).getPesoConfezione() - this.getPesoConfezione() < 0.001 && (((Carne)o).getTipoCarne().compareTo(this.getTipoCarne()) == 0)) {
-    		return true;
+    	if(o instanceof Carne) {
+    		if(((Carne)o).getPrezzo() - this.getPrezzo() < 0.001 && ((Carne)o).getDataScad().isEqual(this.getDataScad())
+    	    	&& ((Carne)o).getPesoConfezione() - this.getPesoConfezione() < 0.001 && (((Carne)o).getTipoCarne().compareTo(this.getTipoCarne()) == 0)) {
+    	    		return true;
+    	    }
     	}
     	return false;
     }

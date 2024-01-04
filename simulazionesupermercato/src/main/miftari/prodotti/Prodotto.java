@@ -12,7 +12,7 @@ public abstract class Prodotto {
 	
 	public Prodotto(double prezzo, LocalDate dataScad){
 		if(prezzo <= 0) {
-			this.prezzo = new Random().nextDouble(Prodotto.PREZZO_MIN, (Prodotto.PREZZO_MAX));
+			this.prezzo = new Random().nextDouble(Prodotto.PREZZO_MIN, Prodotto.PREZZO_MAX);
 		}
 		this.prezzo = prezzo;
 		this.dataScad = dataScad;

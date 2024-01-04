@@ -1,5 +1,7 @@
 package main.miftari.magazzino;
 
+import java.util.List;
+
 import main.miftari.prodotti.Prodotto;
 
 public interface Magazzino {
@@ -8,4 +10,5 @@ public interface Magazzino {
 	
 	Prodotto preleva(Prodotto daPrelevare);
 
+	public List<Prodotto> aggiornaProdottiInTot();
 }

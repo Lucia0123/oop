@@ -2,7 +2,6 @@ package main.melle.clienti;
 
 import main.melle.zonacarrelli.CarrelloImpl;
 import main.melle.zonacarrelli.ZonaCarrelli;
-import main.melle.zonacarrelli.ZonaCarrelliImpl;
 
 public class FactoryDiCliente {
 	

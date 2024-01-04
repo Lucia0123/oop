@@ -4,8 +4,6 @@ import java.time.LocalDate;
 
 public class Farina extends ProdottoAlimentare {
 
-
-
     private TipoFarina marca;
 
 
@@ -22,9 +20,11 @@ public class Farina extends ProdottoAlimentare {
     
     @Override
     public boolean equals(Object o) {
-    	if(((Farina)o).getPrezzo() - this.getPrezzo() < 0.001 && ((Farina)o).getDataScad().equals(this.getDataScad())
-    		&& ((Farina)o).getPesoConfezione() - this.getPesoConfezione() < 0.001 && (((Farina)o).getMarcaFarina().compareTo(this.getMarcaFarina()) == 0)) {
-    		return true;
+    	if(o instanceof Farina) {
+    		if(((Farina)o).getPrezzo() - this.getPrezzo() < 0.001 && ((Farina)o).getDataScad().isEqual(this.getDataScad())
+    	    	&& ((Farina)o).getPesoConfezione() - this.getPesoConfezione() < 0.001 && (((Farina)o).getMarcaFarina().compareTo(this.getMarcaFarina()) == 0)) {
+    	    		return true;
+    	    }
     	}
     	return false;
     }

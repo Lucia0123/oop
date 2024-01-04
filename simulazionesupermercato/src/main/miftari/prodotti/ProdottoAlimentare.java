@@ -21,7 +21,7 @@ public abstract class ProdottoAlimentare extends Prodotto{
     @Override
     public LocalDate getDataScad() {
         // Chiamata al metodo della classe base
-        return (LocalDate)super.getDataScad();
+        return super.getDataScad();
     }
 
 	

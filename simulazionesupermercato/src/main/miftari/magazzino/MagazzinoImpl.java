@@ -35,22 +35,25 @@ public class MagazzinoImpl implements Magazzino{
 		this.prodottiInTot.addAll(this.farine);
 		this.prodottiInTot.addAll(this.detersivi);
 		this.prodottiInTot.addAll(this.vestiti);
-		return this.prodottiInTot;
+		return List.copyOf(this.prodottiInTot);
 	}
 	
 	// aggiunta del prodotto in magazzino se questo non è scaduto e non è già contenuto in magazzino
 	public void aggiungi(Prodotto daAggiungere) {
-		if(daAggiungere != null && !this.scaduto(daAggiungere) && !this.prodottiInTot.contains(daAggiungere)) {
-			this.smista(daAggiungere);
-			this.aggiornaProdottiInTot();
+		this.aggiornaProdottiInTot();
+		if(daAggiungere != null && !this.prodottiInTot.contains(daAggiungere)) {
+			if(daAggiungere instanceof Vestito || !this.scaduto(daAggiungere)) {
+				this.smista(daAggiungere);
+				this.aggiornaProdottiInTot();
+			}
 		}
 		
 	}
 
+	// prelevamento del prodotto dal magazzino se questo è contenuto in magazzino
 	public Prodotto preleva(Prodotto daPrelevare) {
 		if(daPrelevare != null && this.prodottiInTot.contains(daPrelevare)) {
 			// smistamento del prodotto nella lista della sua categoria
-			if(daPrelevare instanceof ProdottoAlimentare) {
 				if(this.controllaCategoria(daPrelevare) > 1) {
 					if(this.controllaCategoria(daPrelevare) == 2) {
 						this.detersivi.remove(daPrelevare);
@@ -67,8 +70,8 @@ public class MagazzinoImpl implements Magazzino{
 						this.farine.remove(daPrelevare);	
 					}
 				}
-			}
 		}
+		this.aggiornaProdottiInTot();
 		return daPrelevare;
 	}
 
@@ -82,24 +85,23 @@ public class MagazzinoImpl implements Magazzino{
 	
 	// smistamento del prodotto nella lista della sua categoria
 	private void smista(Prodotto daSmistare) {
-		if(daSmistare instanceof ProdottoAlimentare) {
-			if(this.controllaCategoria(daSmistare) > 1) {
-				if(this.controllaCategoria(daSmistare) == 2) {
-					this.detersivi.add((Detersivo)daSmistare);
-				}
-				else {
-					this.vestiti.add((Vestito)daSmistare);
-				}
+		if(this.controllaCategoria(daSmistare) > 1) {
+			if(this.controllaCategoria(daSmistare) == 2) {
+				this.detersivi.add((Detersivo)daSmistare);
 			}
 			else {
-				if(this.controllaCategoria(daSmistare) == 1) {
-					this.carni.add((Carne)daSmistare);
-				}
-				else {
-					this.farine.add((Farina)daSmistare);
-				}
+				this.vestiti.add((Vestito)daSmistare);
 			}
 		}
+		else {
+			if(this.controllaCategoria(daSmistare) == 1) {
+				this.carni.add((Carne)daSmistare);
+			}
+			else {
+				this.farine.add((Farina)daSmistare);
+			}
+		}
+		
 	}
 
 	// restituisce 0 se il prodotto passato è farina, 1 se carne, 2 se detersivo, 3 se vestito
