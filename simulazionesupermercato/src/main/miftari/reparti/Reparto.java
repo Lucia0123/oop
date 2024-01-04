@@ -10,7 +10,7 @@ public interface Reparto {
 	
 	int getCapacitaMax();
 	
-	int aggiornaCapacitaAttuale();
+	int aggiornaNumeroAttualeProdotti();
 
 	void aggiungiProdotto(Prodotto prodotto);
 	

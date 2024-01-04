@@ -45,9 +45,9 @@ public class Cliente {
 			}
 			
 			// il cliente si mette in fila alla cassa con la coda più breve
-			supermercato.getZonaCasse().aggiungiAllaCodaPiuBreve(this);
-			
-			// poi??
+			if(!this.prodottiPresi.isEmpty()) {
+				supermercato.getZonaCasse().aggiungiAllaCodaPiuBreve(this);
+			}
 		}
 	}
 	

@@ -72,7 +72,7 @@ public class RepartoImpl implements Reparto{
 
 	// metodo per aggiungere un prodotto in reparto
 	public void aggiungiProdotto(Prodotto prodotto) {
-		if(prodotto != null && this.numeroAttualeProdotti > 0) {
+		if(prodotto != null && this.numeroAttualeProdotti < CAPACITA_MAX) {
 			if(this.etichetta == Etichetta.REPARTO_ALIMENTARE) {
 				if(prodotto instanceof ProdottoAlimentare) {
 					// aggiungo prodotto alimentare in reparto

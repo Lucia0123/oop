@@ -6,7 +6,7 @@ public abstract class Lavoratore {
 
 	private double stipendio;
 	
-	public Lavoratore(int stipendio) {
+	public Lavoratore(double stipendio) {
 		this.stipendio = stipendio;
 	}
 	

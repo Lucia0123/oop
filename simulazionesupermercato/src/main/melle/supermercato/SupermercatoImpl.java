@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import main.melle.lavoratori.Cassiere;
+import main.melle.lavoratori.Lavoratore;
 import main.melle.zonacarrelli.ZonaCarrelli;
 import main.melle.zonacarrelli.ZonaCarrelliImpl;
 import main.melle.zonacasse.ZonaCasse;
@@ -20,14 +22,18 @@ public class SupermercatoImpl implements Supermercato{
 	
 	public static final int NUMERO_MINIMO_REPARTI = 2;
 	public static final int NUMERO_MASSIMO_REPARTI = 10;
+	public static final double STIPENDIO_MINIMO_LAVORATORE;
+	public static final double STIPENDIO_MASSIMO_LAVORATORE;
 	private final UfficioAmministrativo ufficioAmm;
 	private final UfficioLogistica ufficioLog;
 	private final ZonaCasse zonaCasse;
 	private int numeroCasse = new Random().nextInt(1, 6); // numero casse fra 1 e 5 casualmente
-	private int numeroReparti = new Random().nextInt(1, 6); // numero reparti fra 1 e 5 casualmente
+	private int numeroReparti = new Random().nextInt(NUMERO_MINIMO_REPARTI, (NUMERO_MASSIMO_REPARTI++)); // numero reparti fra 2 e 10 casualmente
 	private final Magazzino magazzino;
 	private final ZonaCarrelli zonaCarrelli;
 	private List<Reparto> reparti;
+	private List<Lavoratore> lavoratori;
+	private final double stipendioLavoratore;
 	private final Tempo tempo;
 	
 	public SupermercatoImpl() {
@@ -40,13 +46,19 @@ public class SupermercatoImpl implements Supermercato{
 		for(int i = 0; i < this.numeroReparti; i++) {
 			reparti.add(new RepartoImpl());
 		}
+		this.lavoratori = new ArrayList<>();
+		// creo un cassiere per ogni cassa esistente
+		for(int i = 0; i < this.numeroCasse; i++) {
+			Cassiere daAggiungere = new Cassiere(new Random().nextDouble(STIPENDIO_MINIMO_LAVORATORE, (STIPENDIO_MASSIMO_LAVORATORE++)), this.zonaCasse.getCasse().get(i));
+			this.lavoratori.add(daAggiungere);
+		}
 		this.tempo = new Tempo();
 	}
 	
 	// costruttore con alcuni parametri stabiliti dall'utente
 	public SupermercatoImpl(int numeroReparti, int numeroCasse) {	
 		this.ufficioAmm = new UfficioAmministrativo();
-		this.uffioLog = new UfficioLogistica();
+		this.ufficioLog = new UfficioLogistica();
 		this.zonaCasse = new ZonaCasseImpl(ZonaCasseImpl.NUMERO_MINIMO_CASSE);
 		
 		// setta this.numeroCasse a numeroCasse solo se quest'ultimo è fra NUMERO_MINIMO_CASSE e NUMERO_MASSIMO_CASSE
@@ -65,11 +77,15 @@ public class SupermercatoImpl implements Supermercato{
 				reparti.add(new RepartoImpl());
 			}
 		}
-		else {
-			// se numeroReparti non è accettabile gli viene assegnato un valore casuale entro i limiti prestabiliti
-			numeroReparti = new Random().nextInt(NUMERO_MINIMO_REPARTI, (NUMERO_MASSIMO_REPARTI--));
-		}
 		this.numeroReparti = numeroReparti;
+		
+		this.lavoratori = new ArrayList<>();
+		// creo un cassiere per ogni cassa esistente
+		for(int i = 0; i < this.numeroCasse; i++) {
+			Cassiere daAggiungere = new Cassiere(new Random().nextDouble(STIPENDIO_MINIMO_LAVORATORE, (STIPENDIO_MASSIMO_LAVORATORE++)), this.zonaCasse.getCasse().get(i));
+			this.lavoratori.add(daAggiungere);
+		}
+		
 		this.tempo = new Tempo();
 	}
 	

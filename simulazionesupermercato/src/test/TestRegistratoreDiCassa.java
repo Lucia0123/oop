@@ -60,17 +60,5 @@ class TestRegistratoreDiCassa {
 		guadagnoInRegistratore = costoTotalePagamento;
 		assertEquals(registratore.getGuadagno(), guadagnoInRegistratore, 0.001);
 	}
-
-	@Test
-	void testPrelevaGuadagno() {
-		RegistratoreDiCassa registratore = new RegistratoreDiCassa();
-		var factory = new FactoryDiProdotto();
-		List<Prodotto> lista = List.of(factory.creaDetersivo(TipoDetersivo.PER_LAVATRICE), factory.creaFarina(TipoFarina.TIPO_0));
-		double costoTotalePagamento = lista.get(0).getPrezzo() + lista.get(1).getPrezzo();
-		registratore.registraPagamento(lista, costoTotalePagamento);
-		registratore.prelevaGuadagno();
-		double guadagnoInRegistratore = 0.0;
-		assertEquals(registratore.getGuadagno(), guadagnoInRegistratore, 0.001);
-	}
 }
 

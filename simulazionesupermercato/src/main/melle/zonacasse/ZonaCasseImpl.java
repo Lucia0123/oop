@@ -22,10 +22,21 @@ public class ZonaCasseImpl implements ZonaCasse{
 			this.casse.add(nuova);
 		}
 	}
+	
 	public int getNCasse() {
 		return numeroCasse;
 	}
 	
+	// metodo per aggiungere una cassa alla zona delle casse se non si è raggiunto il numero massimo prestabilito
+	public void aggiungiCassa() {
+		if(this.numeroCasse < NUMERO_MASSIMO_CASSE) {
+			this.casse.add(new Cassa());
+		}
+	}
+	
+	public List<Cassa> getCasse(){
+		return List.copyOf(this.casse);
+	}
 	
 	public boolean setNCasse(int nuovoNumero) {
 		if(nuovoNumero >= NUMERO_MINIMO_CASSE && nuovoNumero <= NUMERO_MASSIMO_CASSE) {
