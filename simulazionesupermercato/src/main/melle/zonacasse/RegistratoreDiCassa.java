@@ -34,7 +34,7 @@ public class RegistratoreDiCassa {
 		return this.guadagno;
 	}
 	
-    private double calcolaCostoSpesa(List<Prodotto> p) {
+    public double calcolaCostoSpesa(List<Prodotto> p) {
 		// somma del prezzo di ogni prodotto in p
     	double costoTotale = 0.0;
     	for(Prodotto prodotto : p) {

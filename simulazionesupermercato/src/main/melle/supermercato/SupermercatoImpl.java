@@ -22,6 +22,7 @@ public class SupermercatoImpl implements Supermercato{
 	public static final int NUMERO_MASSIMO_REPARTI = 10;
 	private final UfficioAmministrativo ufficioAmm;
 	private final UfficioLogistica ufficioLog;
+	private final ZonaCasse zonaCasse;
 	private int numeroCasse = new Random().nextInt(1, 6); // numero casse fra 1 e 5 casualmente
 	private int numeroReparti = new Random().nextInt(1, 6); // numero reparti fra 1 e 5 casualmente
 	private final Magazzino magazzino;
@@ -32,7 +33,7 @@ public class SupermercatoImpl implements Supermercato{
 	public SupermercatoImpl() {
 		this.ufficioAmm = new UfficioAmministrativo();
 		this.uffioLog = new UfficioLogistica();
-		ZonaCasse zonaCasse = new ZonaCasseImpl(this.numeroCasse);
+		this.zonaCasse = new ZonaCasseImpl(this.numeroCasse);
 		this.magazzino = new MagazzinoImpl();
 		this.zonaCarrelli = new ZonaCarrelliImpl();
 		this.reparti = new ArrayList<>();
@@ -46,11 +47,11 @@ public class SupermercatoImpl implements Supermercato{
 	public SupermercatoImpl(int numeroReparti, int numeroCasse) {	
 		this.ufficioAmm = new UfficioAmministrativo();
 		this.uffioLog = new UfficioLogistica();
-		ZonaCasse zonaCasse = new ZonaCasseImpl(ZonaCasseImpl.NUMERO_MINIMO_CASSE);
+		this.zonaCasse = new ZonaCasseImpl(ZonaCasseImpl.NUMERO_MINIMO_CASSE);
 		
 		// setta this.numeroCasse a numeroCasse solo se quest'ultimo è fra NUMERO_MINIMO_CASSE e NUMERO_MASSIMO_CASSE
 		// se numeroCasse non è accettabile la zona delle casse avrà NUMERO_MINIMO_CASSE casse
-		if(zonaCasse.setNCasse(numeroCasse)) {
+		if(this.zonaCasse.setNCasse(numeroCasse)) {
 			this.numeroCasse = numeroCasse;
 		}
 		
@@ -83,6 +84,10 @@ public class SupermercatoImpl implements Supermercato{
 	public ZonaCarrelli getZonaCarrelli() {
 		return this.zonaCarrelli;
 	}
+	
+	public ZonaCasse getZonaCasse() {
+		return this.zonaCasse;
+	}
 
 	public Magazzino getMagazzino() {
 		return this.magazzino;
@@ -112,5 +117,9 @@ public class SupermercatoImpl implements Supermercato{
 	
 	public Tempo getTempo() {
 		return this.tempo;
+	}
+	
+	public boolean isSimulazioneAttiva() {
+		return this.tempo.simulazioneAttiva;
 	}
 }

@@ -1,5 +1,7 @@
 package main.melle.lavoratori;
 
+import main.melle.supermercato.Supermercato;
+
 public abstract class Lavoratore {
 
 	private double stipendio;
@@ -12,5 +14,5 @@ public abstract class Lavoratore {
 		return stipendio;
 	}
 	
-	public abstract void lavora();
+	public abstract void lavora(Supermercato supermercato);
 }

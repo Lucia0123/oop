@@ -10,15 +10,15 @@ import main.miftari.prodotti.ProdottoNonAlimentare;
 
 public class RepartoImpl implements Reparto{
 
-	private static final int CAPACITA_MAX = 150;
-	private int capacitaAttuale; // numero di prodotti aggiungibili in questo reparto attualmente
+	private static final int CAPACITA_MAX = 150; // numero massimo di prodotti teoricamente aggiungibili a questo reparto
+	private int numeroAttualeProdotti; // numero di prodotti presenti in questo reparto attualmente
 	private Etichetta etichetta; // etichetta che identifica il reparto come alimentare o non alimentare
 	private List<Prodotto> prodottiInReparto;
 	
 	// costruttore per creare un reparto con una specifica etichetta
 	public RepartoImpl(Etichetta etichetta) {
 		this.etichetta = etichetta;
-		this.capacitaAttuale = CAPACITA_MAX;
+		this.numeroAttualeProdotti = 0;
 		this.prodottiInReparto = new ArrayList<>();
 	}
 	
@@ -39,10 +39,10 @@ public class RepartoImpl implements Reparto{
 		return CAPACITA_MAX;
 	}
 
-	// aggiorna e restituisce la capacita attuale
-	public int aggiornaCapacitaAttuale() {
-		this.capacitaAttuale = this.prodottiInReparto.size();
-		return this.capacitaAttuale;
+	// aggiorna e restituisce il numero attuale di prodotti contenuti nel reparto
+	public int aggiornaNumeroAttualeProdotti() {
+		this.numeroAttualeProdotti = this.prodottiInReparto.size();
+		return this.numeroAttualeProdotti;
 	}
 
 	// metodo per prelevare un prodotto dal reparto
@@ -72,7 +72,7 @@ public class RepartoImpl implements Reparto{
 
 	// metodo per aggiungere un prodotto in reparto
 	public void aggiungiProdotto(Prodotto prodotto) {
-		if(prodotto != null && this.capacitaAttuale > 0) {
+		if(prodotto != null && this.numeroAttualeProdotti > 0) {
 			if(this.etichetta == Etichetta.REPARTO_ALIMENTARE) {
 				if(prodotto instanceof ProdottoAlimentare) {
 					// aggiungo prodotto alimentare in reparto

@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import main.melle.zonacarrelli.ZonaCarrelli;
+import main.melle.zonacasse.ZonaCasse;
 import main.miftari.magazzino.Magazzino;
 import main.miftari.prodotti.Prodotto;
 import main.miftari.reparti.Etichetta;
@@ -17,6 +18,8 @@ public interface Supermercato {
 	
 	ZonaCarrelli getZonaCarrelli();
 	
+	ZonaCasse getZonaCasse();
+	
 	Magazzino getMagazzino();
 	
 	List<Reparto> getReparti();
@@ -25,7 +28,9 @@ public interface Supermercato {
 
 	void aggiungiReparto(Etichetta etichetta);
 	
-	public void aggiungiReparto();
+	void aggiungiReparto();
 	
-	public Tempo getTempo();
+	Tempo getTempo();
+	
+	boolean isSimulazioneAttiva();
 }

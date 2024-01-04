@@ -45,6 +45,7 @@ public class Cassa {
 		return this.nClientiInCoda;
 	}
 	
+	// restituisce il riferimento al primo cliente in coda
 	public Cliente getClienteDaServire() {
 		return this.coda.peek();
 	}
