@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import main.melle.supermercato.Tempo;
 import main.miftari.prodotti.Prodotto;
 import main.miftari.prodotti.ProdottoAlimentare;
 import main.miftari.prodotti.ProdottoNonAlimentare;
@@ -93,5 +94,16 @@ public class RepartoImpl implements Reparto{
 		if(this.prodottiInReparto.remove(daPrendere));
 		return daPrendere;
 	}
-	
+
+	@Override
+	public void rimuoviProdottiScaduti() {
+		for(Prodotto prodotto : this.prodottiInReparto) {
+			// controllo della data di scadenza del prodotto
+			if(prodotto.getDataScad().isBefore(Tempo.getDataAttuale())) {
+				this.rimuoviERestituisci(prodotto);
+			}
+		}
+		// alla fine si aggiorna il numeroAttualeProdotti
+		this.aggiornaNumeroAttualeProdotti();
+	}	
 }

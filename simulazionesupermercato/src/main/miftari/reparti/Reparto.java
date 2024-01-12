@@ -17,4 +17,6 @@ public interface Reparto {
 	Prodotto prendiProdotto(Prodotto prodotto);
 	
 	List<Prodotto> getProdotti();
+	
+	void rimuoviProdottiScaduti();
 }

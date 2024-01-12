@@ -91,6 +91,22 @@ public class MagazzinoImpl implements Magazzino{
 		return daPrelevare;
 	}
 
+	// restituisce 0 se il prodotto passato è farina, 1 se carne, 2 se detersivo, 3 se vestito
+	public int controllaCategoria(Prodotto prodotto) {
+		if(prodotto instanceof ProdottoAlimentare) {
+			if(prodotto instanceof Farina) {
+				return 0;
+			}	
+			return 1;
+		}
+		else {
+			if(prodotto instanceof Detersivo) {
+				return 2;
+			}
+			return 3;
+		}
+	}
+	
 	// controllo della data di scadenza dei prodotti, restituisce true se il prodotto è scaduto
 	private boolean scaduto(Prodotto daControllare) {
 		if(daControllare.getDataScad().isAfter(Tempo.getDataAttuale())) {
@@ -119,20 +135,4 @@ public class MagazzinoImpl implements Magazzino{
 		}
 		
 	}
-
-	// restituisce 0 se il prodotto passato è farina, 1 se carne, 2 se detersivo, 3 se vestito
-		private int controllaCategoria(Prodotto prodotto) {
-			if(prodotto instanceof ProdottoAlimentare) {
-				if(prodotto instanceof Farina) {
-					return 0;
-				}	
-				return 1;
-			}
-			else {
-				if(prodotto instanceof Detersivo) {
-					return 2;
-				}
-				return 3;
-			}
-		}
 }

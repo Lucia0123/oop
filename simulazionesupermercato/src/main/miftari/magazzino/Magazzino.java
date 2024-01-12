@@ -9,6 +9,8 @@ public interface Magazzino {
 	void aggiungi(Prodotto daAggiungere);
 	
 	Prodotto preleva(Prodotto daPrelevare);
+	
+	int controllaCategoria(Prodotto prodotto);
 
 	// aggiorna e restituisce una lista contentente tutti i prodotti in magazzino
 	public List<Prodotto> aggiornaProdottiInTot();
