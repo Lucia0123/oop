@@ -3,6 +3,7 @@ package main.melle.clienti;
 import main.melle.zonacarrelli.CarrelloImpl;
 import main.melle.zonacarrelli.ZonaCarrelli;
 
+// generatore di clienti
 public class FactoryDiCliente {
 	
 	private ZonaCarrelli zona;
@@ -20,7 +21,7 @@ public class FactoryDiCliente {
 		
 	}
 
-	Cliente creaClienteConCarrello() {
+	public Cliente creaClienteConCarrello() {
 		Cliente creato = null;
 		if(zona.getNCarrelliLiberi() > 0){
 			creato = new Cliente(new CarrelloImpl());
@@ -29,7 +30,7 @@ public class FactoryDiCliente {
 		return creato;
 	}
 	
-	Cliente creaClienteSenzaCarrello() {
+	public Cliente creaClienteSenzaCarrello() {
 		return new Cliente();
 	}
 }

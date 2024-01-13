@@ -15,8 +15,8 @@ public class Scaffalista extends Lavoratore{
 	private Magazzino magazzino;
 	private List<Reparto> reparti;
 	
-	public Scaffalista(int stipendio, Magazzino magazzino, List<Reparto> reparti) {
-		super(stipendio);
+	public Scaffalista(double stipendioNuovoLavoratore, Magazzino magazzino, List<Reparto> reparti) {
+		super(stipendioNuovoLavoratore);
 		this.magazzino = magazzino;
 		this.reparti = reparti;
 	}

@@ -1,14 +1,15 @@
 package main.melle.supermercato;
 
-import java.time.LocalDate;
 import java.util.List;
 
+import main.melle.lavoratori.Lavoratore;
 import main.melle.zonacarrelli.ZonaCarrelli;
 import main.melle.zonacasse.ZonaCasse;
 import main.miftari.magazzino.Magazzino;
-import main.miftari.prodotti.Prodotto;
 import main.miftari.reparti.Etichetta;
 import main.miftari.reparti.Reparto;
+import main.miftari.uffici.UfficioAmministrativo;
+import main.miftari.uffici.UfficioLogistica;
 
 public interface Supermercato {
 
@@ -24,13 +25,15 @@ public interface Supermercato {
 	
 	List<Reparto> getReparti();
 	
-	List<Prodotto> getProdottiInTotale();
+	List<Lavoratore> getLavoratori();
+
+	Tempo getTempo();
+	
+	void startLavoratori();
 
 	void aggiungiReparto(Etichetta etichetta);
 	
 	void aggiungiReparto();
-	
-	Tempo getTempo();
-	
+		
 	boolean isSimulazioneAttiva();
 }

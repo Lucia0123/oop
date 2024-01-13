@@ -26,6 +26,7 @@ public class Tempo {
 	}
 		
 	public void startTempo() {
+		this.simulazioneAttiva = true;
 		while(simulazioneAttiva) {
 			this.vaiAvantiDiUnGiorno();
 		}

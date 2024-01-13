@@ -38,16 +38,14 @@ public class Cliente {
 	}
 	
 	public void faiSpesa(Supermercato supermercato) {
-		while(supermercato.isSimulazioneAttiva()) {
-			// il cliente prende prodotti fino a che non raggiunge la sua massima capacità
+		if(supermercato.isSimulazioneAttiva()) {
+			// il cliente prende prodotti finchè la sua capacità lo permette
 			while(capacita > 0) {
 				this.selezionaProdotti(supermercato);
 			}
 			
 			// il cliente si mette in fila alla cassa con la coda più breve
-			if(!this.prodottiPresi.isEmpty()) {
-				supermercato.getZonaCasse().aggiungiAllaCodaPiuBreve(this);
-			}
+			supermercato.getZonaCasse().aggiungiAllaCodaPiuBreve(this);
 		}
 	}
 	
@@ -63,7 +61,11 @@ public class Cliente {
 		// seleziona un prodotto random
 		Prodotto scelto = visitato.getProdotti().get(new Random().nextInt(visitato.getProdotti().size()));
 		
-		// prendi il prodotto scelto
-		this.prodottiPresi.add(visitato.prendiProdotto(scelto));
+		// togli il prodotto scelto dal reparto e prendilo
+		Prodotto preso = visitato.prendiProdotto(scelto);
+		if(preso != null) {
+			this.prodottiPresi.add(preso);
+			this.capacita--;
+		}
 	}
 }
