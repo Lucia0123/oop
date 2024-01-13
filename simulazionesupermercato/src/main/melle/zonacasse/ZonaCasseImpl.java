@@ -45,6 +45,7 @@ public class ZonaCasseImpl implements ZonaCasse{
 					// alla creazione le casse in più aggiunte hanno code vuote
 					this.casse.add(new Cassa());
 				}
+				this.numeroCasse = nuovoNumero;
 				return true;
 			}
 			else {
@@ -59,6 +60,7 @@ public class ZonaCasseImpl implements ZonaCasse{
 						}
 						daSpostare.clear();
 					}
+					this.numeroCasse = nuovoNumero;
 					return true;
 				}
 			}
@@ -80,7 +82,7 @@ public class ZonaCasseImpl implements ZonaCasse{
 		}
 	}
 
-	private Cassa getCassaConCodaPiuBreve() {
+	public Cassa getCassaConCodaPiuBreve() {
 		Cassa CassaMigliore = this.casse.get(0);
 		for(Cassa cassa : this.casse) {
 			if(cassa.getNClientiInCoda() < CassaMigliore.getNClientiInCoda())

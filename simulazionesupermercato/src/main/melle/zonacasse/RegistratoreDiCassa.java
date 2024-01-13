@@ -17,7 +17,7 @@ public class RegistratoreDiCassa {
 	
 	// metodo che restituisce l'esito della registrazione del pagamento
 	public boolean registraPagamento(List<Prodotto> l, double costo) {
-		if(this.calcolaCostoSpesa(l) == costo) { // controllo se costo rappresenta la giusta somma da pagare
+		if(this.calcolaCostoSpesa(l) - costo < 0.001) { // controllo se costo rappresenta la giusta somma da pagare
 			RegistrazionePagamento nuovoPagamento = new RegistrazionePagamento(l, costo);
 			this.pagamentiEffettuati.add(nuovoPagamento);
 			this.guadagno += costo;
@@ -31,6 +31,7 @@ public class RegistratoreDiCassa {
 	}
 	
 	public double getGuadagno() {
+		System.out.println(this.guadagno);
 		return this.guadagno;
 	}
 	

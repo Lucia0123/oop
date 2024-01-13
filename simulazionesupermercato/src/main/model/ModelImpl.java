@@ -36,7 +36,8 @@ public class ModelImpl implements Model{
 	}
 	
 	public void iniziaSimulazione() {
-		this.tempo.startTempo();		
+		.
+		//this.tempo.startTempo();		
 		// fai partire lavoratori
 		this.supermercato.startLavoratori();
 		// fai partire clienti

@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class Tempo {
 
-	boolean simulazioneAttiva = false;
+	public boolean simulazioneAttiva = false;
 	private static LocalDate dataAttuale = LocalDate.EPOCH; // 1970-01-01
 	
 	public Tempo(){
@@ -23,13 +23,6 @@ public class Tempo {
         
         // Aggiunge il numero casuale di giorni alla data inizio
         return dataInizio.plusDays(giorniCasuali);
-	}
-		
-	public void startTempo() {
-		this.simulazioneAttiva = true;
-		while(simulazioneAttiva) {
-			this.vaiAvantiDiUnGiorno();
-		}
 	}
 	
 	public void vaiAvantiDiUnGiorno() {

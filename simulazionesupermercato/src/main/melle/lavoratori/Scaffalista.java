@@ -22,7 +22,6 @@ public class Scaffalista extends Lavoratore{
 	}
 
 	public void lavora(Supermercato supermercato) {
-		while(supermercato.isSimulazioneAttiva()) {
 			int i;
 			// rimuovi tutti i prodotti scaduti dai reparti (non si applica ai vestiti visto che non hanno data di scadenza)		
 			for(Reparto reparto : this.reparti) {
@@ -33,7 +32,8 @@ public class Scaffalista extends Lavoratore{
 			List<Prodotto> prodottiInMagazzino = this.magazzino.aggiornaProdottiInTot();
 			List<Prodotto> prodottiPrelevati = new ArrayList<>();
 			// finchè ha spazio libero lo scaffalista continua a prelevare prodotti dal magazzino
-			for(i = 0; i < this.capacita; i++) {
+			
+			for(i = 0; i < this.capacita && i < prodottiInMagazzino.size(); i++) {
 				// seleziona il prodotto di indice i e lo preleva
 				prodottiPrelevati.add(this.magazzino.preleva(prodottiInMagazzino.get(i)));
 			}
@@ -55,7 +55,6 @@ public class Scaffalista extends Lavoratore{
 						this.reparti.get(i).aggiungiProdotto(prodotto);
 					}
 				}
-			}
-		}	
+			}	
 	}
 }

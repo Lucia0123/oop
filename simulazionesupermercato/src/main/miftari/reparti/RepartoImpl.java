@@ -18,18 +18,21 @@ public class RepartoImpl implements Reparto{
 	
 	// costruttore per creare un reparto con una specifica etichetta
 	public RepartoImpl(Etichetta etichetta) {
+		this();
 		this.etichetta = etichetta;
-		this.numeroAttualeProdotti = 0;
-		this.prodottiInReparto = new ArrayList<>();
 	}
 	
 	// costruttore per creare un reparto con Etichetta random
 	public RepartoImpl() {
 		int numeroCasuale = new Random().nextInt(2); // numero casuale 0 o 1
 		if(numeroCasuale == 0) {
-			new RepartoImpl(Etichetta.REPARTO_ALIMENTARE);
+			this.etichetta = Etichetta.REPARTO_ALIMENTARE;
 		}
-		new RepartoImpl(Etichetta.REPARTO_NON_ALIMENTARE);
+		else {
+			this.etichetta = Etichetta.REPARTO_ALIMENTARE;
+		}
+		this.numeroAttualeProdotti = 0;
+		this.prodottiInReparto = new ArrayList<>();
 	}
 
 	public Etichetta getEtichetta() {
@@ -68,6 +71,7 @@ public class RepartoImpl implements Reparto{
 	
 	// metodo per ispezionare i prodotti presenti in reparto
 	public List<Prodotto> getProdotti() {
+		this.aggiornaNumeroAttualeProdotti();
 		return List.copyOf(this.prodottiInReparto);
 	}
 
@@ -97,13 +101,15 @@ public class RepartoImpl implements Reparto{
 
 	@Override
 	public void rimuoviProdottiScaduti() {
-		for(Prodotto prodotto : this.prodottiInReparto) {
-			// controllo della data di scadenza del prodotto
-			if(prodotto.getDataScad().isBefore(Tempo.getDataAttuale())) {
-				this.rimuoviERestituisci(prodotto);
+		if(this.prodottiInReparto != null) {
+			for(Prodotto prodotto : this.prodottiInReparto) {
+				// controllo della data di scadenza del prodotto
+				if(prodotto.getDataScad().isBefore(Tempo.getDataAttuale())) {
+					this.rimuoviERestituisci(prodotto);
+				}
 			}
+			// alla fine si aggiorna il numeroAttualeProdotti
+			this.aggiornaNumeroAttualeProdotti();
 		}
-		// alla fine si aggiorna il numeroAttualeProdotti
-		this.aggiornaNumeroAttualeProdotti();
-	}	
+	}
 }

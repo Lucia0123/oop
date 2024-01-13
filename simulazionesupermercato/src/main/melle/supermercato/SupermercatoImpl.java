@@ -23,8 +23,6 @@ public class SupermercatoImpl implements Supermercato{
 	public static final double STIPENDIO_MASSIMO_LAVORATORE = 2000.00;
 	public static final int NUMERO_SCAFFALISTI = 3;
 	
-	private final UfficioAmministrativo ufficioAmm;
-	private final UfficioLogistica ufficioLog;
 	private ZonaCasse zonaCasse;
 	private int numeroCasse = new Random().nextInt(1, 6); // numero casse fra 1 e 5 casualmente
 	private int numeroReparti = new Random().nextInt(NUMERO_MINIMO_REPARTI, NUMERO_MASSIMO_REPARTI); // numero reparti fra 2 e 10 casualmente
@@ -33,9 +31,10 @@ public class SupermercatoImpl implements Supermercato{
 	private List<Reparto> reparti = new ArrayList<>();
 	private List<Lavoratore> lavoratori = new ArrayList<>();
 	private final Tempo tempo;
+	private final UfficioAmministrativo ufficioAmm;
+	private final UfficioLogistica ufficioLog;
 	
 	public SupermercatoImpl(final Tempo tempo) {
-		this.ufficioAmm = new UfficioAmministrativoImpl();
 		this.zonaCasse = new ZonaCasseImpl(this.numeroCasse);
 		for(int i = 0; i < this.numeroReparti; i++) {
 			reparti.add(new RepartoImpl());
@@ -53,9 +52,10 @@ public class SupermercatoImpl implements Supermercato{
 			this.lavoratori.add(daAggiungere);
 		}
 		this.magazzino = new MagazzinoImpl();
-		this.ufficioLog = new UfficioLogisticaImpl(this.magazzino, this.reparti);
 		this.zonaCarrelli = new ZonaCarrelliImpl();
 		this.tempo = tempo;
+		this.ufficioAmm = new UfficioAmministrativoImpl(this.zonaCasse, this.lavoratori);
+		this.ufficioLog = new UfficioLogisticaImpl(this.magazzino, this.reparti);
 	}
 	
 	// costruttore con alcuni parametri stabiliti dall'utente

@@ -25,23 +25,20 @@ public class Cassiere extends Lavoratore{
 	}
 
 	public void lavora(Supermercato supermercato) {
-		while(supermercato.isSimulazioneAttiva()) {
-			// chi gli dice la cassa da gestire e come viene scelta??
-			while(this.cassaCheGestisco != null) {
+		// chi gli dice la cassa da gestire e come viene scelta??
+			if(this.cassaCheGestisco != null) {
 				Cliente daServire = this.cassaCheGestisco.getClienteDaServire();
 				
 				// se c'è un cliente da servire calcolo il costo che ha da pagare e registro il pagamento
 				if(daServire != null) {
+					System.out.println("Servo il cliente");
 					List<Prodotto> prodottiDaPagare = daServire.getProdottiPresi();
-					double prezzoTotale = this.cassaCheGestisco.getRegistratoreDiCassa().calcolaCostoSpesa(null);
+					double prezzoTotale = this.cassaCheGestisco.getRegistratoreDiCassa().calcolaCostoSpesa(prodottiDaPagare);
 					this.cassaCheGestisco.getRegistratoreDiCassa().registraPagamento(prodottiDaPagare, prezzoTotale);
 					// adesso si può togliere il cliente dalla coda
 					this.cassaCheGestisco.togliDallaCoda(daServire);
 					// quando nessuno ha più il riferimento a cliente, questo oggetto verrà eliminato dal garbage collector
 				}
-			}
-		}
-		
+			}		
 	}
-
 }

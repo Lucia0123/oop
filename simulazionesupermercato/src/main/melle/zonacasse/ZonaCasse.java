@@ -17,4 +17,6 @@ public interface ZonaCasse {
 	void aggiungiAllaCodaPiuBreve(Cliente c);
 	
 	void togliDallaCoda(Cliente c, Cassa cassa);
+	
+	public Cassa getCassaConCodaPiuBreve();
 }

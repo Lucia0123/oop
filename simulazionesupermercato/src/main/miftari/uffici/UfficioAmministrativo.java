@@ -7,9 +7,9 @@ import main.melle.zonacasse.ZonaCasse;
 
 public interface UfficioAmministrativo {
 
-	double aggiornaEntrate(ZonaCasse zonaCasse); // aggiorna e restituisce le entrate
+	double aggiornaEntrate(); // aggiorna e restituisce le entrate
 	
-	double aggiornaUscite(List<Lavoratore> lavoratori);
+	double aggiornaUscite();
 	
 	double getBilancio();
 }

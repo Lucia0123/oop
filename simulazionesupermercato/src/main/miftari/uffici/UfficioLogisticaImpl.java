@@ -1,5 +1,6 @@
 package main.miftari.uffici;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +11,10 @@ import main.miftari.prodotti.Carne;
 import main.miftari.prodotti.Detersivo;
 import main.miftari.prodotti.Farina;
 import main.miftari.prodotti.Prodotto;
+import main.miftari.prodotti.Taglia;
+import main.miftari.prodotti.TipoCarne;
+import main.miftari.prodotti.TipoDetersivo;
+import main.miftari.prodotti.TipoFarina;
 import main.miftari.prodotti.Vestito;
 import main.miftari.reparti.Reparto;
 
@@ -39,10 +44,10 @@ public class UfficioLogisticaImpl implements UfficioLogistica{
 	}
 	
 	public void ordinaProdotti() {
-		Carne carne = null;
-		Farina farina = null;
-		Detersivo detersivo = null;
-		Vestito vestito = null;
+		Carne carne = new Carne(2, LocalDate.now(), 3, TipoCarne.DI_AGNELLO);
+		Farina farina = new Farina(2, LocalDate.now(), TipoFarina.DI_GLUTINE, 4);
+		Detersivo detersivo = new Detersivo(2, LocalDate.now(), TipoDetersivo.PER_LAVATRICE);
+		Vestito vestito = new Vestito(5, Taglia.L);
 		
 		// se si è raggiunti la soglia minima ordina prodotti dal fornitore
 		if(this.contaCarne() < this.SOGLIA_MINIMA) {
