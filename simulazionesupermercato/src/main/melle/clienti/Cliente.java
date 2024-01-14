@@ -38,16 +38,13 @@ public class Cliente {
 	}
 	
 	public void faiSpesa(Supermercato supermercato) {
-		if(supermercato.isSimulazioneAttiva()) {
-			// il cliente prende prodotti finchè ce ne sono nei reparti e finchè la sua capacità lo permette
-			if(this.ciSonoProdottiDaPrendere(supermercato)) {
-				System.out.println("Ho preso prodotti");
-				for(int i = capacita; i < capacita; i++) {
-					this.selezionaProdotti(supermercato);
-				}
+		// il cliente prende prodotti finchè ce ne sono nei reparti e finchè la sua capacità lo permette
+		if(this.ciSonoProdottiDaPrendere(supermercato)) {
+			for(int i = capacita; i > 0; i--) {
+				this.selezionaProdotti(supermercato);
+				
 				// il cliente si mette in fila alla cassa con la coda più breve
 				supermercato.getZonaCasse().aggiungiAllaCodaPiuBreve(this);
-				System.out.println("Sono in fila");
 			}
 		}
 	}
@@ -56,25 +53,23 @@ public class Cliente {
 		return List.copyOf(this.prodottiPresi);
 	}
 	
-	// il cliente seleziona prodotti random in reparti random
+	// il cliente seleziona prodotti random dal primo reparto non vuoto che trova
 	private void selezionaProdotti(Supermercato supermercato){
-		// visita reparto random
-		int sizee = supermercato.getReparti().size();
-		int indiceRepartoRandom = new Random().nextInt(sizee);
-		Reparto visitato = supermercato.getReparti().get(indiceRepartoRandom);
 		
-		if(!visitato.getProdotti().isEmpty()) {
+		// visita reparto non vuoto
+		Reparto daVisitare = this.cercaRepartoNonVuoto(supermercato);
+			
+		if(daVisitare != null) {
 			// seleziona un prodotto random
-			Prodotto scelto = visitato.getProdotti().get(new Random().nextInt(visitato.getProdotti().size()));
+			Prodotto scelto = daVisitare.getProdotti().get(new Random().nextInt(daVisitare.getProdotti().size()));
 			// togli il prodotto scelto dal reparto e prendilo
-			Prodotto preso = visitato.prendiProdotto(scelto);
+			Prodotto preso = daVisitare.prendiProdotto(scelto);
 			if(preso != null) {
 				this.prodottiPresi.add(preso);
 				this.capacita--;
 			}
 		}
 	}
-	
 	// metodo che restituisce true se c'è almeno un reparto non vuoto (cioè con almeno un prodotto dentro)
 	private boolean ciSonoProdottiDaPrendere(Supermercato supermercato) {
 		int numeroRepartiNonVuoti = 0;
@@ -87,5 +82,15 @@ public class Cliente {
 			return true;
 		}
 		return false;
+	}
+	
+	// restituisce il primo reparto non vuoto trovato
+	private Reparto cercaRepartoNonVuoto(Supermercato supermercato) {
+		for(Reparto reparto : supermercato.getReparti()) {
+			if(!reparto.getProdotti().isEmpty()) {
+				return reparto;
+			}
+		}
+		return null;
 	}
 }

@@ -49,6 +49,24 @@ public class RepartoImpl implements Reparto{
 		return this.numeroAttualeProdotti;
 	}
 
+	// metodo per aggiungere un prodotto in reparto
+	public void aggiungiProdotto(Prodotto prodotto) {
+		if(prodotto != null && this.numeroAttualeProdotti < CAPACITA_MAX) {
+			if(this.etichetta == Etichetta.REPARTO_ALIMENTARE) {
+				if(prodotto instanceof ProdottoAlimentare) {
+					// aggiungo prodotto alimentare in reparto
+					this.prodottiInReparto.add(prodotto);
+				}	
+			}
+			else{
+				if(prodotto instanceof ProdottoNonAlimentare) {
+					// aggiungo prodotto non alimentare in reparto
+					this.prodottiInReparto.add(prodotto);
+				}		
+			}			
+		}		
+	}
+	
 	// metodo per prelevare un prodotto dal reparto
 	public Prodotto prendiProdotto(Prodotto prodotto) {
 		Prodotto valoreDiRitorno = null;
@@ -75,30 +93,6 @@ public class RepartoImpl implements Reparto{
 		return List.copyOf(this.prodottiInReparto);
 	}
 
-	// metodo per aggiungere un prodotto in reparto
-	public void aggiungiProdotto(Prodotto prodotto) {
-		if(prodotto != null && this.numeroAttualeProdotti < CAPACITA_MAX) {
-			if(this.etichetta == Etichetta.REPARTO_ALIMENTARE) {
-				if(prodotto instanceof ProdottoAlimentare) {
-					// aggiungo prodotto alimentare in reparto
-					this.prodottiInReparto.add(prodotto);
-				}	
-			}
-			else{
-				if(prodotto instanceof ProdottoNonAlimentare) {
-					// aggiungo prodotto non alimentare in reparto
-					this.prodottiInReparto.add(prodotto);
-				}		
-			}			
-		}		
-	}
-	
-	private Prodotto rimuoviERestituisci(Prodotto prodotto) {
-		Prodotto daPrendere = this.prodottiInReparto.get(this.prodottiInReparto.indexOf(prodotto));
-		if(this.prodottiInReparto.remove(daPrendere));
-		return daPrendere;
-	}
-
 	@Override
 	public void rimuoviProdottiScaduti() {
 		if(this.prodottiInReparto != null) {
@@ -111,5 +105,11 @@ public class RepartoImpl implements Reparto{
 			// alla fine si aggiorna il numeroAttualeProdotti
 			this.aggiornaNumeroAttualeProdotti();
 		}
+	}
+	
+	private Prodotto rimuoviERestituisci(Prodotto prodotto) {
+		Prodotto daPrendere = this.prodottiInReparto.get(this.prodottiInReparto.indexOf(prodotto));
+		if(this.prodottiInReparto.remove(daPrendere));
+		return daPrendere;
 	}
 }

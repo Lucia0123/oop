@@ -30,6 +30,7 @@ public class ZonaCasseImpl implements ZonaCasse{
 	// metodo per aggiungere una cassa alla zona delle casse se non si è raggiunto il numero massimo prestabilito
 	public void aggiungiCassa() {
 		if(this.numeroCasse < NUMERO_MASSIMO_CASSE) {
+			numeroCasse += 1;
 			this.casse.add(new Cassa());
 		}
 	}
@@ -38,6 +39,7 @@ public class ZonaCasseImpl implements ZonaCasse{
 		return List.copyOf(this.casse);
 	}
 	
+	// restituisce true se il nuovo numero di casse è accettabile e aggiusta lista di casse in modo che abbia nuovoNumero casse
 	public boolean setNCasse(int nuovoNumero) {
 		if(nuovoNumero >= NUMERO_MINIMO_CASSE && nuovoNumero <= NUMERO_MASSIMO_CASSE) {
 			if(this.numeroCasse < nuovoNumero) {
@@ -52,20 +54,20 @@ public class ZonaCasseImpl implements ZonaCasse{
 				if(this.numeroCasse > nuovoNumero) {
 					// rimozione delle casse "di troppo" trasferendo i clienti che erano là nelle casse rimanenti
 					Queue <Cliente> daSpostare = new LinkedList<>();
-					for(int i = 0; i < (numeroCasse - nuovoNumero); i++) {
-						daSpostare = this.casse.get(i).getClientiInCoda();
-						casse.remove(i);
+					for(int i = 0; i < (this.numeroCasse - nuovoNumero); i++) {
+						daSpostare = this.casse.get(this.casse.size()-1).getClientiInCoda();
+						casse.remove(this.casse.size()-1);
 						for(Cliente cliente : daSpostare) {
 							this.aggiungiAllaCodaPiuBreve(cliente);
 						}
-						daSpostare.clear();
-					}
+					}				
 					this.numeroCasse = nuovoNumero;
 					return true;
 				}
+				// se numeroCasse == nuovoNumero non c'è nessun cambiamento da applicare
+				return true;
 			}
 		}
-		// se numeroCasse == nuovoNumero non c'è nessun cambiamento da applicare
 		return false;
 	}
 

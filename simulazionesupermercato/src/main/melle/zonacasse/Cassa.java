@@ -61,7 +61,7 @@ public class Cassa {
 	// restituisce tutti i clienti in coda
 	//(sfruttato ad esempio da ZonaCasseImpl in caso l'utente diminuisca il numero di casse attuali
 	// per non perdere i clienti delle casse eliminate)
-	Queue<Cliente> getClientiInCoda(){
+	public Queue<Cliente> getClientiInCoda(){
 		return this.coda;
 	}
 	

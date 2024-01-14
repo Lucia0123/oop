@@ -1,79 +1,32 @@
 package test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import main.melle.supermercato.*;
+import main.miftari.reparti.Etichetta;
 
 import org.junit.jupiter.api.Test;
 
 class TestSupermercatoImpl {
-
-	@Test
-	void testSupermercatoImplTempo() {
-		fail("Not yet implemented");
-	}
-
+	
 	@Test
 	void testSupermercatoImplTempoIntInt() {
-		fail("Not yet implemented");
+		int nReparti = 3;
+		int nCasse = 5;
+		Supermercato supermercato = new SupermercatoImpl(nReparti, nCasse);
+		assertEquals(3, supermercato.getReparti().size());
+		assertEquals(nCasse, supermercato.getZonaCasse().getNCasse());
 	}
 
-	@Test
-	void testGetUfficioAmministrativo() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetUfficioLogistica() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetZonaCarrelli() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetZonaCasse() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetMagazzino() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetReparti() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetLavoratori() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetTempo() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testStartLavoratori() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	void testAggiungiRepartoEtichetta() {
-		fail("Not yet implemented");
+		int nRepartiPrima = 3;
+		int nCasse = 5;
+		Supermercato supermercato = new SupermercatoImpl(nRepartiPrima, nCasse);
+		supermercato.aggiungiReparto(Etichetta.REPARTO_NON_ALIMENTARE);
+		int nRepartiDopo = nRepartiPrima + 1;
+		assertEquals(nRepartiDopo, supermercato.getReparti().size());
+		// l'etichetta del nuovo reparto è quella passata come parametro ad aggiungiReparto()
+		assertTrue(supermercato.getReparti().get(nRepartiDopo - 1).getEtichetta() == Etichetta.REPARTO_NON_ALIMENTARE);
 	}
-
-	@Test
-	void testAggiungiReparto() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testIsSimulazioneAttiva() {
-		fail("Not yet implemented");
-	}
-
 }

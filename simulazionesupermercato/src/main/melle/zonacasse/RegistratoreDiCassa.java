@@ -31,7 +31,7 @@ public class RegistratoreDiCassa {
 	}
 	
 	public double getGuadagno() {
-		System.out.println(this.guadagno);
+		//System.out.println(this.guadagno);
 		return this.guadagno;
 	}
 	

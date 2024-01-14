@@ -31,7 +31,6 @@ public class Cassiere extends Lavoratore{
 				
 				// se c'è un cliente da servire calcolo il costo che ha da pagare e registro il pagamento
 				if(daServire != null) {
-					System.out.println("Servo il cliente");
 					List<Prodotto> prodottiDaPagare = daServire.getProdottiPresi();
 					double prezzoTotale = this.cassaCheGestisco.getRegistratoreDiCassa().calcolaCostoSpesa(prodottiDaPagare);
 					this.cassaCheGestisco.getRegistratoreDiCassa().registraPagamento(prodottiDaPagare, prezzoTotale);

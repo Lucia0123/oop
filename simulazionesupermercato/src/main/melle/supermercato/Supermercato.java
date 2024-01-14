@@ -26,14 +26,10 @@ public interface Supermercato {
 	List<Reparto> getReparti();
 	
 	List<Lavoratore> getLavoratori();
-
-	Tempo getTempo();
 	
 	void startLavoratori();
 
 	void aggiungiReparto(Etichetta etichetta);
 	
 	void aggiungiReparto();
-		
-	boolean isSimulazioneAttiva();
 }

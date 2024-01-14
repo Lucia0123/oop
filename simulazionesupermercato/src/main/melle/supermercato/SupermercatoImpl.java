@@ -21,7 +21,7 @@ public class SupermercatoImpl implements Supermercato{
 	public static final int NUMERO_MASSIMO_REPARTI = 11;
 	public static final double STIPENDIO_MINIMO_LAVORATORE = 900.00;
 	public static final double STIPENDIO_MASSIMO_LAVORATORE = 2000.00;
-	public static final int NUMERO_SCAFFALISTI = 3;
+	public static final int NUMERO_SCAFFALISTI = 1;
 	
 	private ZonaCasse zonaCasse;
 	private int numeroCasse = new Random().nextInt(1, 6); // numero casse fra 1 e 5 casualmente
@@ -30,11 +30,10 @@ public class SupermercatoImpl implements Supermercato{
 	private final ZonaCarrelli zonaCarrelli;
 	private List<Reparto> reparti = new ArrayList<>();
 	private List<Lavoratore> lavoratori = new ArrayList<>();
-	private final Tempo tempo;
 	private final UfficioAmministrativo ufficioAmm;
 	private final UfficioLogistica ufficioLog;
 	
-	public SupermercatoImpl(final Tempo tempo) {
+	public SupermercatoImpl() {
 		this.zonaCasse = new ZonaCasseImpl(this.numeroCasse);
 		for(int i = 0; i < this.numeroReparti; i++) {
 			reparti.add(new RepartoImpl());
@@ -45,33 +44,40 @@ public class SupermercatoImpl implements Supermercato{
 			Lavoratore daAggiungere = new Cassiere(stipendioNuovoLavoratore, this.zonaCasse.getCasse().get(i));
 			this.lavoratori.add(daAggiungere);
 		}
+		this.magazzino = new MagazzinoImpl();
 		// creo NUMERO_SCAFFALISTI scaffalisti
 		for(int i = 0; i < NUMERO_SCAFFALISTI; i++) {
 			double stipendioNuovoLavoratore = new Random().nextDouble(STIPENDIO_MINIMO_LAVORATORE, STIPENDIO_MASSIMO_LAVORATORE);
 			Lavoratore daAggiungere = new Scaffalista(stipendioNuovoLavoratore, this.getMagazzino(), this.reparti);
 			this.lavoratori.add(daAggiungere);
 		}
-		this.magazzino = new MagazzinoImpl();
 		this.zonaCarrelli = new ZonaCarrelliImpl();
-		this.tempo = tempo;
 		this.ufficioAmm = new UfficioAmministrativoImpl(this.zonaCasse, this.lavoratori);
 		this.ufficioLog = new UfficioLogisticaImpl(this.magazzino, this.reparti);
 	}
 	
 	// costruttore con alcuni parametri stabiliti dall'utente
-	public SupermercatoImpl(final Tempo tempo, int numeroReparti, int numeroCasse) {
-		this(tempo);
-		this.zonaCasse = new ZonaCasseImpl(ZonaCasseImpl.NUMERO_MINIMO_CASSE);
+	public SupermercatoImpl(int numeroReparti, int numeroCasse) {
+		this();
+		this.zonaCasse = new ZonaCasseImpl(ZonaCasseImpl.NUMERO_MINIMO_CASSE);		
+		this.lavoratori.clear();
 		
 		// setta this.numeroCasse a numeroCasse solo se quest'ultimo è fra NUMERO_MINIMO_CASSE e NUMERO_MASSIMO_CASSE
 		// se numeroCasse non è accettabile la zona delle casse avrà NUMERO_MINIMO_CASSE casse
 		if(this.zonaCasse.setNCasse(numeroCasse)) {
 			this.numeroCasse = numeroCasse;
+			// creo un cassiere per ogni cassa esistente
+			for(int i = 0; i < this.numeroCasse; i++) {
+				double stipendioNuovoLavoratore = new Random().nextDouble(STIPENDIO_MINIMO_LAVORATORE, STIPENDIO_MASSIMO_LAVORATORE);
+				Lavoratore daAggiungere = new Cassiere(stipendioNuovoLavoratore, this.zonaCasse.getCasse().get(i));
+				this.lavoratori.add(daAggiungere);
+			}
 		}
 		
 		// controllo su numeroReparti passato come valore al costruttore
 		if(numeroReparti <= NUMERO_MASSIMO_REPARTI && numeroReparti >= NUMERO_MINIMO_REPARTI) {
 			this.numeroReparti = numeroReparti;
+			this.reparti.clear();
 			for(int i = 0; i < numeroReparti; i++) {
 				reparti.add(new RepartoImpl());
 			}
@@ -112,10 +118,6 @@ public class SupermercatoImpl implements Supermercato{
 		return List.copyOf(this.lavoratori);
 	}
 	
-	public Tempo getTempo() {
-		return this.tempo;
-	}
-	
 	public void startLavoratori() {
 		for(Lavoratore lavoratore : this.lavoratori) {
 			lavoratore.lavora(this);
@@ -125,18 +127,19 @@ public class SupermercatoImpl implements Supermercato{
 	// metodo per aggiungere un reparto con l'etichetta data
 	public void aggiungiReparto(Etichetta etichetta) {
 		if(this.numeroReparti < NUMERO_MASSIMO_REPARTI) {
+			System.out.println("aggiungo un reparto");
+			this.numeroReparti += 1;
 			this.reparti.add(new RepartoImpl(etichetta));
 		}
+		System.out.println(this.numeroReparti + " " + this.reparti);
 	}
 	
 	// metodo per aggiungere un reparto casuale
 	public void aggiungiReparto() {
 		if(this.numeroReparti < NUMERO_MASSIMO_REPARTI) {
+			System.out.println("aggiungo un reparto");
+			this.numeroReparti += 1;
 			this.reparti.add(new RepartoImpl());
 		}
-	}
-
-	public boolean isSimulazioneAttiva() {
-		return this.tempo.simulazioneAttiva;
 	}
 }

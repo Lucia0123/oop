@@ -2,14 +2,20 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
+import main.melle.supermercato.Tempo;
+import main.miftari.prodotti.Carne;
 import main.miftari.prodotti.FactoryDiProdotto;
+import main.miftari.prodotti.Farina;
 import main.miftari.prodotti.Prodotto;
+import main.miftari.prodotti.TipoCarne;
 import main.miftari.prodotti.TipoDetersivo;
 import main.miftari.prodotti.TipoFarina;
 import main.miftari.reparti.Etichetta;
-import main.miftari.reparti.RepartoImpl;
+import main.miftari.reparti.*;
 
 class TestRepartoImpl {
 	
@@ -60,4 +66,25 @@ class TestRepartoImpl {
 
 	}
 
+	@Test
+    void testRimuoviProdottiScaduti() {
+        // Configurazione di base
+        Reparto reparto = new RepartoImpl(Etichetta.REPARTO_ALIMENTARE);
+
+        // Aggiungi prodotti al reparto
+        Prodotto prodottoScaduto = new Carne(9.45, Tempo.getDataAttuale().minusDays(30), 3, TipoCarne.DI_MAIALE);
+        Prodotto prodottoNonScaduto = new Farina(10, Tempo.getDataCasuale(0), TipoFarina.DI_GLUTINE, 12);
+
+        reparto.aggiungiProdotto(prodottoScaduto);
+        reparto.aggiungiProdotto(prodottoNonScaduto);
+
+        // Esegui il metodo di rimozione dei prodotti scaduti
+        reparto.rimuoviProdottiScaduti();
+
+        // Verifica che il prodotto scaduto sia stato rimosso
+        List<Prodotto> prodottiInReparto = reparto.getProdotti();
+        assertEquals(1, prodottiInReparto.size());
+        assertTrue(prodottiInReparto.contains(prodottoNonScaduto));
+        assertFalse(prodottiInReparto.contains(prodottoScaduto));
+    }
 }

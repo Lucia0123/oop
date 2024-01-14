@@ -19,7 +19,6 @@ public class GestioneClienti {
 	}
 	
 	public void generaClienti(Supermercato supermercato) {
-		while(supermercato.isSimulazioneAttiva()) {
 			Cliente clienteConCarrello = FactoryDiCliente.getInstance(zona).creaClienteConCarrello();
 			this.nTotClienti++;
 			clienteConCarrello.faiSpesa(supermercato);
@@ -28,6 +27,5 @@ public class GestioneClienti {
 			this.nTotClienti++;
 			clienteSenzaCarrello.faiSpesa(supermercato);
 			this.nTotClienti--;
-		}
 	}	
 }

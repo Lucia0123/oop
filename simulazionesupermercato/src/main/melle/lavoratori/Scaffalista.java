@@ -29,32 +29,34 @@ public class Scaffalista extends Lavoratore{
 			}
 			
 			// prendi prodotti dal magazzino
-			List<Prodotto> prodottiInMagazzino = this.magazzino.aggiornaProdottiInTot();
-			List<Prodotto> prodottiPrelevati = new ArrayList<>();
-			// finchè ha spazio libero lo scaffalista continua a prelevare prodotti dal magazzino
-			
-			for(i = 0; i < this.capacita && i < prodottiInMagazzino.size(); i++) {
-				// seleziona il prodotto di indice i e lo preleva
-				prodottiPrelevati.add(this.magazzino.preleva(prodottiInMagazzino.get(i)));
-			}
-			// disponi i prodotti presi nei rispettivi reparti
-			for(Prodotto prodotto : prodottiPrelevati) {
-				// se il prodotto è alimentare..
-				if(this.magazzino.controllaCategoria(prodotto) <= 1) {
-					// disponi il prodotto in un reparto alimentare
-					for(i = 0; i < this.reparti.size() && this.reparti.get(i).getEtichetta() == Etichetta.REPARTO_NON_ALIMENTARE; i++);
-					this.reparti.get(i).aggiungiProdotto(prodotto);
-				}
+			if(this.magazzino.aggiornaProdottiInTot() != null) {
+				List<Prodotto> prodottiInMagazzino = this.magazzino.aggiornaProdottiInTot();
+				List<Prodotto> prodottiPrelevati = new ArrayList<>();
+				// finchè ha spazio libero lo scaffalista continua a prelevare prodotti dal magazzino
 				
-				// se il prodotto non è alimentare
-				else {
-					// cerca un reparto adatto
-					for(i = 0; i < this.reparti.size() && this.reparti.get(i).getEtichetta() == Etichetta.REPARTO_ALIMENTARE; i++);
-					// se il reparto esiste, aggiungi a questo il prodotto
-					if(i != this.reparti.size()) {
+				for(i = 0; i < this.capacita && i < prodottiInMagazzino.size(); i++) {
+					// seleziona il prodotto di indice i e lo preleva
+					prodottiPrelevati.add(this.magazzino.preleva(prodottiInMagazzino.get(i)));
+				}
+				// disponi i prodotti presi nei rispettivi reparti
+				for(Prodotto prodotto : prodottiPrelevati) {
+					// se il prodotto è alimentare..
+					if(this.magazzino.controllaCategoria(prodotto) <= 1) {
+						// disponi il prodotto in un reparto alimentare
+						for(i = 0; i < this.reparti.size() && this.reparti.get(i).getEtichetta() == Etichetta.REPARTO_NON_ALIMENTARE; i++);
 						this.reparti.get(i).aggiungiProdotto(prodotto);
 					}
+					
+					// se il prodotto non è alimentare
+					else {
+						// cerca un reparto adatto
+						for(i = 0; i < this.reparti.size() && this.reparti.get(i).getEtichetta() == Etichetta.REPARTO_ALIMENTARE; i++);
+						// se il reparto esiste, aggiungi a questo il prodotto
+						if(i != this.reparti.size()) {
+							this.reparti.get(i).aggiungiProdotto(prodotto);
+						}
+					}
 				}
-			}	
+			}				
 	}
 }

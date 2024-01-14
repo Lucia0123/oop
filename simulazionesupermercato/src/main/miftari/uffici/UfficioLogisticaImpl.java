@@ -34,6 +34,10 @@ public class UfficioLogisticaImpl implements UfficioLogistica{
 		this.fornitore = new FornitoreDiretto();
 	}
 	
+	public Fornitore getFornitore() {
+		return this.fornitore;
+	}
+	
 	public List<Prodotto> aggiornaInventario() {
 		inventario.clear();
 		inventario.addAll(this.magazzino.aggiornaProdottiInTot());
