@@ -36,4 +36,7 @@ public abstract class Prodotto {
 	public static double getPrezzoMax() {
 		return PREZZO_MAX;
 	}
+	
+	@Override
+	public abstract String toString();
 }

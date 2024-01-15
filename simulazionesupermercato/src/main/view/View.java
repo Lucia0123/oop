@@ -8,11 +8,17 @@ import main.miftari.prodotti.Prodotto;
 
 public interface View {
 
+	void setObserver(ViewObserver observer);
+	
 	Controller getController();
 	
 	void setController(Controller controller);
 	
-	void creaEMostraGUI();
+	void mostraGUI();
+	
+	int getDurata();
+	
+	void durataSbagliata();
 	
 	void aggiornaData(LocalDate data);
 	

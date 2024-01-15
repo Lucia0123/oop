@@ -26,4 +26,9 @@ public class Vestito extends ProdottoNonAlimentare{
     	}
     	return false;
     }
+    
+    @Override
+	public String toString() {
+		return "[ " + Math.round(this.getPrezzo()) + ", " + this.taglia +  " ]";
+	}
 }

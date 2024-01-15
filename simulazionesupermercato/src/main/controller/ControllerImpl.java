@@ -1,19 +1,30 @@
 package main.controller;
 
+import java.awt.Color;
+import java.awt.Font;
+
+import javax.swing.JButton;
+
 import main.model.Model;
+import main.model.ModelImpl;
 import main.view.View;
+import main.view.ViewObserver;
 
-public class ControllerImpl implements Controller, ModelListener{
+public class ControllerImpl implements Controller, ModelListener, ViewObserver{
 
+	private static final int DURATA_MASSIMA = 50; // durata massima della simulazione in numero di giorni
+	private static final int DURATA_MINIMA = 1; // durata minima della simulazione in numero di giorni
 	private Model model;
 	private View view;
+	private int durata;
 
     public ControllerImpl(Model model, View view) {
-        this.model = model;
+    	this.model = model;
         this.view = view;
         this.model.aggiungiListener(this);
+        this.durata = 0;
     }
-    
+       
 	@Override
 	public void setView(View view) {
 		this.view = view;
@@ -34,6 +45,19 @@ public class ControllerImpl implements Controller, ModelListener{
 		return this.model;
 	}
 
+	public void setDurata(int durata) {
+		this.durata = durata;
+	}
+	
+	@Override
+	public void simula() {		
+		if(this.durata != 0) {
+			System.out.println("simula1");
+			this.model = new ModelImpl(this.durata);
+			this.model.simula();
+		}
+	}
+	
 	// metodi attraverso i quali il controller aggiorna la view
 	@Override
 	public void dataCambiata() {
@@ -68,6 +92,22 @@ public class ControllerImpl implements Controller, ModelListener{
 	@Override
 	public void nCarrelliOccupatiCambiato() {
 		this.view.aggiornaNCarrelliOccupati(this.model.getNCarrelliOccupati());
+	}
+
+	@Override
+	public int getDurataMassimaSimulazione() {
+		return DURATA_MASSIMA;
+	}
+
+	@Override
+	public int getDurataMinimaSimulazione() {
+		return DURATA_MINIMA;
+	}
+
+	@Override
+	public void conferma(int durata) {
+		this.durata = durata;
+		System.out.println(this.durata);
 	}
 
 	

@@ -28,4 +28,9 @@ public class Farina extends ProdottoAlimentare {
     	}
     	return false;
     }
+    
+    @Override
+	public String toString() {
+		return "[ " + Math.round(this.getPrezzo()) + ", " + this.getDataScad() + ", "  + this.marca + ", " + this.getPesoConfezione() + " ]";
+	}
 }

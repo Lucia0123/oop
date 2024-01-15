@@ -4,14 +4,14 @@ import main.melle.supermercato.Supermercato;
 
 public abstract class Lavoratore {
 
-	private double stipendio;
+	private double stipendioAlGiorno;
 	
 	public Lavoratore(double stipendio) {
-		this.stipendio = stipendio;
+		this.stipendioAlGiorno = stipendio;
 	}
 	
 	public double getStipendio() {
-		return stipendio;
+		return stipendioAlGiorno;
 	}
 	
 	public abstract void lavora(Supermercato supermercato);

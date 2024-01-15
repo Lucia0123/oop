@@ -22,10 +22,8 @@ public class GestioneClienti {
 			Cliente clienteConCarrello = FactoryDiCliente.getInstance(zona).creaClienteConCarrello();
 			this.nTotClienti++;
 			clienteConCarrello.faiSpesa(supermercato);
-			this.nTotClienti--;
 			Cliente clienteSenzaCarrello = FactoryDiCliente.getInstance(zona).creaClienteSenzaCarrello();
 			this.nTotClienti++;
 			clienteSenzaCarrello.faiSpesa(supermercato);
-			this.nTotClienti--;
 	}	
 }

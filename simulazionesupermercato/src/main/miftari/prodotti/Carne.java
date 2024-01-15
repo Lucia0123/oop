@@ -27,4 +27,9 @@ public class Carne extends ProdottoAlimentare{
     	}
     	return false;
     }
+
+	@Override
+	public String toString() {
+		return "[ " + Math.round(this.getPrezzo()) + ", " + this.getDataScad() + ", " + this.getPesoConfezione() + ", " + this.tipoCarne + " ]";
+	}
 }

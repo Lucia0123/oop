@@ -19,8 +19,8 @@ public class SupermercatoImpl implements Supermercato{
 	
 	public static final int NUMERO_MINIMO_REPARTI = 2;
 	public static final int NUMERO_MASSIMO_REPARTI = 11;
-	public static final double STIPENDIO_MINIMO_LAVORATORE = 900.00;
-	public static final double STIPENDIO_MASSIMO_LAVORATORE = 2000.00;
+	public static final double STIPENDIO_MINIMO_LAVORATORE = 10.00; // paga minima di un lavoratore al giorno
+	public static final double STIPENDIO_MASSIMO_LAVORATORE = 25.00; // paga massima di un lavoratore al giorno
 	public static final int NUMERO_SCAFFALISTI = 1;
 	
 	private ZonaCasse zonaCasse;

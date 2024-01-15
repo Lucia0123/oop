@@ -11,10 +11,10 @@ public class ZonaCarrelliImpl implements ZonaCarrelli{
 	
 	public ZonaCarrelliImpl() {
 		this.carrelli = new Stack<>();
-		for(int i = 0; i <= NUMEROTOTALECARRELLI; i++) {
+		for(int i = 0; i < NUMEROTOTALECARRELLI; i++) {
 			this.carrelli.push(new CarrelloImpl());
 		}
-		this.nCarrelliLiberi = NUMEROTOTALECARRELLI;
+		this.nCarrelliLiberi = this.carrelli.size();
 	}
 	
 	public int getNCarrelliTot() {

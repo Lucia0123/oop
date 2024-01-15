@@ -9,7 +9,7 @@ public class Tempo {
 	private final LocalDate dataInizio;
 	private final LocalDate dataFine;
 	
-	public Tempo(final long durataInGiorni){
+	public Tempo(final int durataInGiorni){
 		this.dataInizio = Tempo.dataAttuale;
 		this.dataFine = this.dataInizio.plusDays(durataInGiorni);
 	}

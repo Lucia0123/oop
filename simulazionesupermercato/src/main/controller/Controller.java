@@ -12,4 +12,12 @@ public interface Controller{
 	void setModel(Model model);
 	
 	Model getModel();
+	
+	void setDurata(int durata);
+	
+	void simula();
+	
+	int getDurataMassimaSimulazione();
+	
+	int getDurataMinimaSimulazione();
 }

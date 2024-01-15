@@ -27,4 +27,9 @@ public class Detersivo extends ProdottoNonAlimentare{
 		 }		 
 		 return false;
 	 }
+	 
+	 @Override
+	 public String toString() {
+		 return "[ " + Math.round(this.getPrezzo()) + ", " + this.getDataScad() + ", " + this.tipoDetersivo + " ]";
+	 }
 }

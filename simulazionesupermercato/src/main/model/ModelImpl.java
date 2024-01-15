@@ -20,20 +20,22 @@ public class ModelImpl implements Model{
 	private GestioneClienti gestore;
 	private int nCarrelliLiberi;
 	
-	public ModelImpl(final long durata) {
+	public ModelImpl(final int durata) {
 		this.tempo = new Tempo(durata);
 		this.supermercato = new SupermercatoImpl();
 		this.gestore = new GestioneClienti(this.supermercato.getZonaCarrelli());
 		this.nCarrelliLiberi = this.supermercato.getZonaCarrelli().getNCarrelliLiberi();
 	}
 	
-	public ModelImpl(final long durata, int numeroReparti, int numeroCasse) {
+	public ModelImpl(final int durata, int numeroReparti, int numeroCasse) {
 		this(durata);
 		this.supermercato = new SupermercatoImpl(numeroReparti, numeroCasse);
 	}
 	
 	public void simula() {
+		System.out.println("simula4");
 		while(this.tempo.vaiAvantiDiUnGiorno()) {
+			System.out.println("simula5");
 			this.notificaDataCambiata();
 			this.notificaBilancioCambiato();
 			this.notificaInventarioCambiato();
@@ -41,7 +43,7 @@ public class ModelImpl implements Model{
 			this.notificaNCarrelliLiberiCambiato();
 			this.notificaNCarrelliOccupatiCambiato();
 			this.notificaNTotClientiCambiato();
-			
+			System.out.println("simula7");
 			// fai partire gli uffici
 			this.supermercato.getUfficioAmministrativo().getBilancio();
 			this.notificaBilancioCambiato();
@@ -49,6 +51,7 @@ public class ModelImpl implements Model{
 			this.notificaInventarioCambiato();
 			this.supermercato.getUfficioLogistica().ordinaProdotti();
 			this.notificaInventarioCambiato();
+			System.out.println("simula8");
 			// fai partire lavoratori
 			this.supermercato.startLavoratori();
 			// fai partire clienti
@@ -56,7 +59,9 @@ public class ModelImpl implements Model{
 			this.notificaNCarrelliLiberiCambiato();
 			this.notificaNCarrelliOccupatiCambiato();
 			this.notificaNTotClientiCambiato();
-		}		
+			System.out.println("simula9");
+		}
+		System.out.println("simula6");
 	}
 
 	@Override
