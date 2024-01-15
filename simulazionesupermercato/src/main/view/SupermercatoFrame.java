@@ -10,8 +10,6 @@ import main.miftari.prodotti.Prodotto;
 
 import javax.swing.JLabel;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import java.awt.Color;
@@ -80,43 +78,43 @@ public class SupermercatoFrame extends JFrame {
 		
 		JLabel lblCOccupati = new JLabel("Carrelli occupati");
 		lblCOccupati.setFont(new Font("Calibri", Font.BOLD, 15));
-		lblCOccupati.setBounds(38, 256, 137, 13);
+		lblCOccupati.setBounds(38, 249, 137, 20);
 		contentPane.add(lblCOccupati);
 		
 		lblDataInfo = new JLabel("");
 		lblDataInfo.setFont(new Font("Calibri", Font.BOLD, 15));
 		lblDataInfo.setBackground(new Color(255, 255, 255));
-		lblDataInfo.setBounds(185, 31, 104, 15);
+		lblDataInfo.setBounds(185, 26, 104, 20);
 		contentPane.add(lblDataInfo);
 	
 		lblBilancioInfo = new JLabel("");
 		lblBilancioInfo.setFont(new Font("Calibri", Font.BOLD, 15));
 		lblBilancioInfo.setBackground(new Color(255, 255, 255));
-		lblBilancioInfo.setBounds(185, 62, 104, 13);
+		lblBilancioInfo.setBounds(185, 55, 104, 20);
 		contentPane.add(lblBilancioInfo);
 		
 		lblLavoratoriInfo = new JLabel("");
 		lblLavoratoriInfo.setFont(new Font("Calibri", Font.BOLD, 15));
 		lblLavoratoriInfo.setBackground(new Color(255, 255, 255));
-		lblLavoratoriInfo.setBounds(185, 139, 104, 13);
+		lblLavoratoriInfo.setBounds(185, 132, 104, 20);
 		contentPane.add(lblLavoratoriInfo);
 		
 		lblClientiInfo = new JLabel("");
 		lblClientiInfo.setFont(new Font("Calibri", Font.BOLD, 15));
 		lblClientiInfo.setBackground(new Color(255, 255, 255));
-		lblClientiInfo.setBounds(185, 175, 104, 13);
+		lblClientiInfo.setBounds(185, 168, 104, 20);
 		contentPane.add(lblClientiInfo);
 		
 		lblCarrelliLiberiInfo = new JLabel("");
 		lblCarrelliLiberiInfo.setFont(new Font("Calibri", Font.BOLD, 15));
 		lblCarrelliLiberiInfo.setBackground(new Color(255, 255, 255));
-		lblCarrelliLiberiInfo.setBounds(185, 214, 104, 13);
+		lblCarrelliLiberiInfo.setBounds(185, 207, 104, 20);
 		contentPane.add(lblCarrelliLiberiInfo);
 		
 		lblCarrelliOccupatiInfo = new JLabel("");
 		lblCarrelliOccupatiInfo.setFont(new Font("Calibri", Font.BOLD, 15));
 		lblCarrelliOccupatiInfo.setBackground(new Color(255, 255, 255));
-		lblCarrelliOccupatiInfo.setBounds(185, 254, 104, 13);
+		lblCarrelliOccupatiInfo.setBounds(185, 247, 104, 20);
 		contentPane.add(lblCarrelliOccupatiInfo);
 			
 		lblInventarioInfo = new JTextArea("");
@@ -124,7 +122,7 @@ public class SupermercatoFrame extends JFrame {
 		lblInventarioInfo.setBackground(new Color(240, 240, 240));
 		lblInventarioInfo.setFont(new Font("Calibri", Font.BOLD, 15));
 		lblInventarioInfo.setForeground(new Color(255, 255, 255));
-		lblInventarioInfo.setBounds(185, 94, 137, 13);
+		lblInventarioInfo.setBounds(185, 85, 137, 22);
 		contentPane.add(lblInventarioInfo);
 				
 		txtDurata = new JTextField("");
@@ -149,10 +147,7 @@ public class SupermercatoFrame extends JFrame {
 		contentPane.add(confermaButton);
 		confermaButton.addActionListener(e -> {
 			try {
-				System.out.println(txtDurata);
-				System.out.println(this.observer);
 				this.observer.conferma(Integer.parseInt(txtDurata.getText()));
-				System.out.println(txtDurata.getText());
 			}
 			catch(NumberFormatException ex) {
 				lblRisultato.setText("la durata deve essere un numero fra 0 e 50");
@@ -204,11 +199,7 @@ public class SupermercatoFrame extends JFrame {
 			return -1;
 		}
 	}
-	
-	public void durataSbagliata() {
-		lblRisultato.setText("la durata deve essere un numero fra 0 e 50");
-	}
-	
+
 	public Controller getController() {
 		return this.controller;
 	}

@@ -7,7 +7,7 @@ public class Tempo {
 
 	private static LocalDate dataAttuale = LocalDate.EPOCH; // 1970-01-01
 	private final LocalDate dataInizio;
-	private final LocalDate dataFine;
+	private LocalDate dataFine;
 	
 	public Tempo(final int durataInGiorni){
 		this.dataInizio = Tempo.dataAttuale;
@@ -34,6 +34,10 @@ public class Tempo {
 			return true;
 		}
 		return false;
+	}
+	
+	public void setDataFine(int durata) {
+		this.dataFine = this.dataInizio.plusDays(durata);
 	}
 }
 

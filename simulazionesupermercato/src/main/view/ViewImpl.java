@@ -42,11 +42,6 @@ public class ViewImpl implements SwingView{
     	return frame.getDurataInserita();
     }
     
-    @Override
-    public void durataSbagliata() {
-    	frame.durataSbagliata();
-    }
-    
     // metodi per aggiornare la view con i nuovi dati
     @Override
     public void aggiornaData(LocalDate data) {

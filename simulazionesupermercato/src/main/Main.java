@@ -23,12 +23,9 @@ public class Main {
         EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					System.out.println(1);
 					// Mostra la GUI
 			        view.mostraGUI();
-			        System.out.println(2);
 				} catch (Exception e) {
-					System.out.println(".");
 					e.printStackTrace();
 				}
 			}

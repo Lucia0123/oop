@@ -9,6 +9,8 @@ import main.miftari.reparti.Etichetta;
 
 public interface Model {
 	
+	void setDurata(int durata);
+	
 	void simula();
 	
 	void aggiungiReparto(Etichetta etichetta);

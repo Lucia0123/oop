@@ -17,9 +17,7 @@ public interface View {
 	void mostraGUI();
 	
 	int getDurata();
-	
-	void durataSbagliata();
-	
+		
 	void aggiornaData(LocalDate data);
 	
 	void aggiornaBilancio(double bilancio);

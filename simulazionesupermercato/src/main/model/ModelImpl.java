@@ -32,18 +32,16 @@ public class ModelImpl implements Model{
 		this.supermercato = new SupermercatoImpl(numeroReparti, numeroCasse);
 	}
 	
+	public void setDurata(int durata) {
+		this.tempo.setDataFine(durata);
+	}
+	
 	public void simula() {
-		System.out.println("simula4");
 		while(this.tempo.vaiAvantiDiUnGiorno()) {
-			System.out.println("simula5");
 			this.notificaDataCambiata();
 			this.notificaBilancioCambiato();
 			this.notificaInventarioCambiato();
 			this.notificaNLavoratoriCambiato();
-			this.notificaNCarrelliLiberiCambiato();
-			this.notificaNCarrelliOccupatiCambiato();
-			this.notificaNTotClientiCambiato();
-			System.out.println("simula7");
 			// fai partire gli uffici
 			this.supermercato.getUfficioAmministrativo().getBilancio();
 			this.notificaBilancioCambiato();
@@ -51,7 +49,6 @@ public class ModelImpl implements Model{
 			this.notificaInventarioCambiato();
 			this.supermercato.getUfficioLogistica().ordinaProdotti();
 			this.notificaInventarioCambiato();
-			System.out.println("simula8");
 			// fai partire lavoratori
 			this.supermercato.startLavoratori();
 			// fai partire clienti
@@ -59,9 +56,7 @@ public class ModelImpl implements Model{
 			this.notificaNCarrelliLiberiCambiato();
 			this.notificaNCarrelliOccupatiCambiato();
 			this.notificaNTotClientiCambiato();
-			System.out.println("simula9");
 		}
-		System.out.println("simula6");
 	}
 
 	@Override
@@ -81,7 +76,7 @@ public class ModelImpl implements Model{
 	
 	@Override
 	public double getBilancio() {
-		return this.supermercato.getUfficioAmministrativo().getBilancio();
+		return Math.round(this.supermercato.getUfficioAmministrativo().getBilancio());
 	}
 	
 	@Override

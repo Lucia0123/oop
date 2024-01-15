@@ -1,12 +1,6 @@
 package main.controller;
 
-import java.awt.Color;
-import java.awt.Font;
-
-import javax.swing.JButton;
-
 import main.model.Model;
-import main.model.ModelImpl;
 import main.view.View;
 import main.view.ViewObserver;
 
@@ -51,9 +45,8 @@ public class ControllerImpl implements Controller, ModelListener, ViewObserver{
 	
 	@Override
 	public void simula() {		
-		if(this.durata != 0) {
-			System.out.println("simula1");
-			this.model = new ModelImpl(this.durata);
+		if(this.durata <= DURATA_MASSIMA && this.durata >= DURATA_MINIMA) {
+			this.model.setDurata(this.durata);
 			this.model.simula();
 		}
 	}
@@ -107,12 +100,5 @@ public class ControllerImpl implements Controller, ModelListener, ViewObserver{
 	@Override
 	public void conferma(int durata) {
 		this.durata = durata;
-		System.out.println(this.durata);
 	}
-
-	
-	
-	
-	
-	
 }
