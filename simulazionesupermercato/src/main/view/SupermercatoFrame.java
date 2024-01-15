@@ -6,6 +6,7 @@ import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
 import main.controller.Controller;
+import main.controller.ControllerImpl;
 import main.miftari.prodotti.Prodotto;
 
 import javax.swing.JLabel;
@@ -152,15 +153,14 @@ public class SupermercatoFrame extends JFrame {
 			catch(NumberFormatException ex) {
 				lblRisultato.setText("la durata deve essere un numero fra 0 e 50");
 			}
-		});
-		
+		});		
 		
 		JButton simulaButton = new JButton("Simula");
 		simulaButton.setFont(new Font("Calibri", Font.BOLD, 15));
 		simulaButton.setBackground(new Color(192, 192, 192));
 		simulaButton.setBounds(394, 177, 85, 48);
 		contentPane.add(simulaButton);
-		simulaButton.addActionListener(e -> controller.simula());
+		simulaButton.addActionListener(e -> ((ControllerImpl)controller).simula());
 	}
 	
 	public void aggiornaData(LocalDate data) {

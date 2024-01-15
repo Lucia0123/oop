@@ -25,7 +25,6 @@ public class Cassiere extends Lavoratore{
 	}
 
 	public void lavora(Supermercato supermercato) {
-		// chi gli dice la cassa da gestire e come viene scelta??
 			if(this.cassaCheGestisco != null) {
 				Cliente daServire = this.cassaCheGestisco.getClienteDaServire();
 				

@@ -8,9 +8,9 @@ public interface ZonaCasse {
 
 	int getNCasse();
 	
-	public void aggiungiCassa();
+	void aggiungiCassa();
 	
-	public List<Cassa> getCasse();
+	List<Cassa> getCasse();
 	
 	boolean setNCasse(int nuovoNumero);
 		
@@ -18,5 +18,5 @@ public interface ZonaCasse {
 	
 	void togliDallaCoda(Cliente c, Cassa cassa);
 	
-	public Cassa getCassaConCodaPiuBreve();
+	Cassa getCassaConCodaPiuBreve();
 }

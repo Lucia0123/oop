@@ -93,7 +93,6 @@ public class RepartoImpl implements Reparto{
 		return List.copyOf(this.prodottiInReparto);
 	}
 
-	@Override
 	public void rimuoviProdottiScaduti() {
 		if(this.prodottiInReparto != null) {
 			for(Prodotto prodotto : this.prodottiInReparto) {

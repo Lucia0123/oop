@@ -15,65 +15,53 @@ public class ViewImpl implements SwingView{
     public ViewImpl() {
         this.controller = null;
     }
-    
-    @Override
+
     public void setObserver(ViewObserver observer) {
     	this.observer = observer;
     }
-    
-    @Override
+
     public Controller getController() {
         return this.frame.getController();
     }
 
-    @Override
     public void setController(Controller controller) {
     	this.controller = controller;
     }
 
-    @Override
     public void mostraGUI() {
     	frame = new SupermercatoFrame(controller, this.observer);
 		frame.setVisible(true);
     }
     
-    @Override
     public int getDurata() {
     	return frame.getDurataInserita();
     }
     
     // metodi per aggiornare la view con i nuovi dati
-    @Override
     public void aggiornaData(LocalDate data) {
     	frame.aggiornaData(data);
     }
 
-	@Override
 	public void aggiornaBilancio(double bilancio) {
 		frame.aggiornaBilancio(bilancio);
 	}
 
-	@Override
 	public void aggiornaInventario(List<Prodotto> inventario) {
 		frame.aggiornaInventario(inventario);
 	}
 
-	@Override
 	public void aggiornaNLavoratori(int n) {
 		frame.aggiornaNLavoratori(n);
 	}
 
-	@Override
 	public void aggiornaNTotClienti(int n) {
 		frame.aggiornaNTotClienti(n);
 	}
 
-	@Override
 	public void aggiornaNCarrelliLiberi(int n) {
 		frame.aggiornaNCarrelliLiberi(n);
 	}
 
-	@Override
 	public void aggiornaNCarrelliOccupati(int n) {
 		frame.aggiornaNCarrelliOccupati(n);
 	}

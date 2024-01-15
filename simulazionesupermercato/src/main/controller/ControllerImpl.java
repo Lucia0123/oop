@@ -43,7 +43,6 @@ public class ControllerImpl implements Controller, ModelListener, ViewObserver{
 		this.durata = durata;
 	}
 	
-	@Override
 	public void simula() {		
 		if(this.durata <= DURATA_MASSIMA && this.durata >= DURATA_MINIMA) {
 			this.model.setDurata(this.durata);

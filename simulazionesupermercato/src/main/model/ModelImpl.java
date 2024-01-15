@@ -115,53 +115,45 @@ public class ModelImpl implements Model{
 	}
 
 	// metodi attraverso i quali il model notifica i listener
-	@Override
 	public void notificaDataCambiata() {
 		for(ModelListener listener : listener) {
             listener.dataCambiata();
         }		
 	}
 
-	@Override
 	public void notificaBilancioCambiato() {
 		for(ModelListener listener : listener) {
             listener.bilancioCambiato();
         }
 	}
 
-	@Override
 	public void notificaInventarioCambiato() {
 		for(ModelListener listener : listener) {
             listener.inventarioCambiato();
         }
 	}
 
-	@Override
 	public void notificaNLavoratoriCambiato() {
 		for(ModelListener listener : listener) {
             listener.nLavoratoriCambiato();
         }
 	}
 
-	@Override
 	public void notificaNTotClientiCambiato() {
 		for(ModelListener listener : listener) {
             listener.nTotClientiCambiato();
         }
 	}
 
-	@Override
 	public void notificaNCarrelliLiberiCambiato() {
 		for(ModelListener listener : listener) {
             listener.nCarrelliLiberiCambiato();
         }
 	}
 
-	@Override
 	public void notificaNCarrelliOccupatiCambiato() {
 		for(ModelListener listener : listener) {
             listener.nCarrelliOccupatiCambiato();
         }
 	}
-
 }

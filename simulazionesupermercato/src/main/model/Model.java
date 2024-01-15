@@ -34,18 +34,4 @@ public interface Model {
 	void aggiungiListener(ModelListener o);
 	
 	void rimuoviListener(ModelListener o);
-	
-	void notificaDataCambiata();
-	
-	void notificaBilancioCambiato();
-	
-	void notificaInventarioCambiato();
-	
-	void notificaNLavoratoriCambiato();
-	
-	void notificaNTotClientiCambiato();
-	
-	void notificaNCarrelliLiberiCambiato();
-	
-	void notificaNCarrelliOccupatiCambiato();
 }
